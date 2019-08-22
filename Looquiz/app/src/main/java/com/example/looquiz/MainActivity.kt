@@ -1,6 +1,7 @@
 package com.example.looquiz
 
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_slideshow -> {
-
+                startActivity(Intent(this,RoomChoose::class.java))
             }
             R.id.nav_manage -> {
 
