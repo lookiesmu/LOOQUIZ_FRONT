@@ -10,10 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 
-/**
- * A simple [Fragment] subclass.
- *
- */
 class ListOfRoom : ListFragment() {
 
     var textView: TextView? = null
