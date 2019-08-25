@@ -1,6 +1,7 @@
 package com.example.looquiz
 
 import android.content.Context
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -117,13 +118,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+                startActivity(Intent(this,MyPageActivity::class.java))
             }
             R.id.nav_gallery -> {
 
             }
             R.id.nav_slideshow -> {
-
+                startActivity(Intent(this,RoomChoose::class.java))
             }
             R.id.nav_manage -> {
 
