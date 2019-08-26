@@ -10,10 +10,10 @@
         tools:showIn="@layout/app_bar_main"
         tools:context=".MainActivity">
 
-    <LinearLayout
-            android:id="@+id/tmapview"
+    <fragment
+            android:id="@+id/mapview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"/>
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
 </LinearLayout>
