@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/signup_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
+                android:id="@+id/findPW_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
         <TextView
                 android:text="@"
                 android:layout_width="wrap_content"

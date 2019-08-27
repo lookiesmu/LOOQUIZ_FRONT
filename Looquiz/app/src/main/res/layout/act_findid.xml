@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/signin_inputID" android:hint="이름을 입력해주세요" android:layout_marginLeft="5dp"
+                android:id="@+id/findid_inputNAME" android:hint="이름을 입력해주세요" android:layout_marginLeft="5dp"
                 android:textSize="14sp"/>
     </LinearLayout>
     <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/signup_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
+                android:id="@+id/findid_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
         <TextView
                 android:text="@"
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 android:entries="@array/이메일"
                 android:layout_width="100dp"
                 android:text="이메일 선택"
-                android:layout_height="wrap_content" android:id="@+id/spinner" android:spinnerMode="dropdown"
+                android:layout_height="wrap_content" android:id="@+id/findid_spinner" android:spinnerMode="dropdown"
         />
     </LinearLayout>
     <LinearLayout
