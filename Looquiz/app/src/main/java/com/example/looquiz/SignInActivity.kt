@@ -66,7 +66,7 @@ class SignInActivity : AppCompatActivity() {
                     var data = json.getJSONObject("data")
                     var uid  = data.getString("uid")
                     Toast.makeText(applicationContext,"${uid}님 환영합니다", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(applicationContext,MyPageActivity::class.java))
+                    startActivity(Intent(applicationContext,MainActivity::class.java))
                     finish()
                 }
                 else {
