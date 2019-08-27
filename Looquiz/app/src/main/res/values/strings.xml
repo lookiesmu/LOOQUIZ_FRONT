@@ -6,4 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="server_url">https://60788ea3.ngrok.io/Lookie</string>
+    <string name = "signin">https://60788ea3.ngrok.io/Lookie/signIn</string>
+    <string name="signup">https://60788ea3.ngrok.io/Lookie/signUp</string>
+    <string name="signup_checkID">https://60788ea3.ngrok.io/Lookie/checkID?uid=</string>
 </resources>
