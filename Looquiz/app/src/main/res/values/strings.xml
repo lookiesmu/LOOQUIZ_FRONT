@@ -6,6 +6,17 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="server_url">https://3e28918f.ngrok.io/Lookie</string>
+    <string name = "signin">https://3e28918f.ngrok.io/Lookie/signIn</string>
+    <string name="signup">https://3e28918f.ngrok.io/Lookie/signUp</string>
+    <string name="signup_checkID">https://3e28918f.ngrok.io/Lookie/checkID?uid=</string>
+    <string name="findID">https://3e28918f.ngrok.io/Lookie/findID?uname=</string>
+    <string name="findPW">https://3e28918f.ngrok.io/Lookie/checkID?uid=</string>
+    <string name="edit_pw">https://3e28918f.ngrok.io/Lookie/updateMember</string>
+
     <string name="popup_menu_gbg">경복궁</string>
     <string name="popup_menu_bukchon">북촌한옥마을</string>
+
 </resources>

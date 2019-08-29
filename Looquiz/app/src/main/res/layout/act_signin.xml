@@ -15,9 +15,10 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content" android:paddingBottom="15dp">
         <TextView
                 android:text="ID"
+                android:textSize="20dp"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
@@ -32,40 +33,53 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp">
         <TextView
                 android:text="PW"
+                android:textSize="20dp"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/signin_inputPW" android:hint="비밀번호를 입력해주세요" android:layout_marginLeft="5dp"
                 android:textSize="14sp"/>
     </LinearLayout>
-    <Button
-            android:text="로그인"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/signin_btnsignin" android:paddingBottom="10dp"/>
-    <Button
-            android:text="네이버 로그인"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/signin_btnnaver" android:paddingBottom="10dp"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <Button
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp">
+        <TextView
                 android:text="회원가입"
+                android:gravity="left"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/signin_btnsignup" android:layout_weight="1"
-                android:paddingBottom="10dp"/>
-        <Button
-                android:text="ID/PW 찾기"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:id="@+id/signin_btnsignup"/>
+
+        <TextView
+                android:text="아이디/비밀번호 찾기"
+                android:gravity="right"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/signin_btnfind" android:layout_weight="1"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:id="@+id/signin_btnfind"/>
+
+
     </LinearLayout>
+    <Button
+            android:text="로그인"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/signin_btnsignin"
+            android:paddingBottom="15dp"/>
+
+
 </LinearLayout>

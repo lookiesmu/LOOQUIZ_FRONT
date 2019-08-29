@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/findPW_inputID" android:hint="이메일을 입력해주세요" android:layout_marginLeft="5dp"
+                android:id="@+id/findpw_inputID" android:hint="이메일을 입력해주세요" android:layout_marginLeft="5dp"
                 android:textSize="14sp"/>
     </LinearLayout>
     <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/signup_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
+                android:id="@+id/findpw_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
         <TextView
                 android:text="@"
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 android:entries="@array/이메일"
                 android:layout_width="100dp"
                 android:text="이메일 선택"
-                android:layout_height="wrap_content" android:id="@+id/spinner" android:spinnerMode="dropdown"
+                android:layout_height="wrap_content" android:id="@+id/findpw_spinner" android:spinnerMode="dropdown"
         />
     </LinearLayout>
     <LinearLayout
@@ -62,7 +62,7 @@
         <Button
                 android:text="확인"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/findid_btnok" android:layout_weight="1"
+                android:layout_height="wrap_content" android:id="@+id/findpw_btnok" android:layout_weight="1"
                 android:paddingBottom="10dp"/>
     </LinearLayout>
 </LinearLayout>
