@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(Intent(this, RoomChoose::class.java))
             }
             R.id.nav_setting -> {
-
+                startActivity(Intent(this, SettingActivity::class.java))
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

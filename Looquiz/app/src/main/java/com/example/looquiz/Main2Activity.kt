@@ -123,13 +123,13 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 startActivity(Intent(this, MyPageActivity::class.java))
             }
             R.id.nav_all -> {
-
+                startActivity(Intent(this, MakingQuizActivity::class.java))
             }
             R.id.nav_room -> {
                 startActivity(Intent(this, RoomChoose::class.java))
             }
             R.id.nav_setting -> {
-
+                startActivity(Intent(this, SettingActivity::class.java))
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
@@ -264,7 +264,6 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                     Toast.makeText(this@Main2Activity, "항목을 선택해주세요", Toast.LENGTH_LONG).show()
                     quizBuilder2.dismiss()
                     makeQuiz(regionName)
-
                 } else {
                     Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
                     quizBuilder2.dismiss()
