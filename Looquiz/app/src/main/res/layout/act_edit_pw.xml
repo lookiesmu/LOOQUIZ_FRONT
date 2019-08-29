@@ -46,10 +46,23 @@
                 android:background="@drawable/quiz_inputbox"
                 android:hint="비밀번호를 다시 입력해주세요"/>
     </LinearLayout>
-    <Button
+    <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="수정"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+        <Button
+                android:id="@+id/btn_editPW"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수정"/>
+        <Button
+                android:id="@+id/btn_secession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원탈퇴"/>
+    </LinearLayout>
+
 
 </LinearLayout>
