@@ -7,10 +7,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="server_url">https://d3665101.ngrok.io/Lookie/</string>
-    <string name = "signin">https://d3665101.ngrok.io/Lookie/signIn</string>
-    <string name="signup">https://d3665101.ngrok.io/Lookie/signUp</string>
-    <string name="signup_checkID">https://d3665101.ngrok.io/Lookie/checkID?uid=</string>
-    <string name="findID">https://d3665101.ngrok.io/Lookie/findID?uname=</string>
-    <string name="findPW">https://d3665101.ngrok.io/Lookie/checkID?uid=</string>
+    <string name="server_url">https://3e28918f.ngrok.io/Lookie</string>
+    <string name = "signin">https://3e28918f.ngrok.io/Lookie/signIn</string>
+    <string name="signup">https://3e28918f.ngrok.io/Lookie/signUp</string>
+    <string name="signup_checkID">https://3e28918f.ngrok.io/Lookie/checkID?uid=</string>
+    <string name="findID">https://3e28918f.ngrok.io/Lookie/findID?uname=</string>
+    <string name="findPW">https://3e28918f.ngrok.io/Lookie/checkID?uid=</string>
+    <string name="edit_pw">https://3e28918f.ngrok.io/Lookie/updateMember</string>
 </resources>

@@ -50,14 +50,14 @@ class SignUpActivity : AppCompatActivity() {
 
             if(state == 0){ //GET_idcheck
                 url = url + "${uid}"
-                response = Okhttp().GET(client, url)
+                response = Okhttp(applicationContext).GET(client, url)
             }
             else if (state == 1){ //POST_signup
                 var pw = params[3]
                 var uname = params[4]
                 var email = params[5]
 
-                response = Okhttp().POST(client,url,CreateJson().json_signup(uid,pw,uname,email))
+                response = Okhttp(applicationContext).POST(client,url,CreateJson().json_signup(uid,pw,uname,email))
             }
             return response
         }
