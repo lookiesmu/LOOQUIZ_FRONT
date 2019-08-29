@@ -45,14 +45,15 @@ class SignInActivity : AppCompatActivity() {
             var uid = params[1]
             var pw = params[2]
 
-            response = Okhttp().POST(client,url,CreateJson().json_signin(uid,pw))
+            response = Okhttp(applicationContext).POST(client,url,CreateJson().json_signin(uid,pw))
 
             return response
         }
 
         override fun onPostExecute(result: String) {
 
-            Log.d("checktest",result)
+            if(!result.isNullOrEmpty())
+                Log.d("checktest",result)
 
             if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
                 Toast.makeText(applicationContext,"네트워크 연결이 좋지 않습니다", Toast.LENGTH_SHORT).show()

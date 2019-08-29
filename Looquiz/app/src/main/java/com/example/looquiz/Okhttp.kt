@@ -1,21 +1,41 @@
 package com.example.looquiz
 
+import android.content.Context
+import android.util.Log
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
-class Okhttp{
+class Okhttp(var context: Context){
+    var SharedClass = SharedClass(context)
 
     fun POST(client: OkHttpClient?, url: String?, jsonbody:String?):String?{
         var response: Response
 
+        var token = SharedClass.getToken()
+
         try {
-            var request= Request.Builder()
+            var builder= Request.Builder()
+            builder
                 .url(url!!)
                 .post(RequestBody.create(MediaType.parse("application/json"), jsonbody!!))
-                .build()
+
+            //header에 넣기
+            if(!token.isNullOrEmpty())
+                builder.header("Authorization",token)
+
+            var request = builder.build()
             response = client!!.newCall(request).execute()
 
-            return response.body()?.string()!!
+            //header에 받기
+            if (!response.header("Authorization").isNullOrEmpty()){
+                SharedClass.setToken(response.header("Authorization").toString())
+                Log.d("okhttp_tokentest","recieve token : ${response.header("Authorization").toString()}")
+            }
+
+            var str:String =response.body()!!.string()
+
+            return str
 
         }catch (e: IOException){
             return e.toString()
@@ -25,16 +45,22 @@ class Okhttp{
 
     fun GET(clinet: OkHttpClient, url:String):String?{
         var response: Response
+        var token = SharedClass.getToken()
 
         try {
-            var request= Request.Builder()
+            var builder= Request.Builder()
                 .url(url!!)
                 .get()
-                .build()
+            //header에 넣기
+            if(!token.isNullOrEmpty()) {
+                Log.d("okhttp_tokentest","send token : ${token}")
+                builder.header("Authorization", token)
+            }
+
+            var request = builder.build()
             response = clinet!!.newCall(request).execute()
 
             return response.body()?.string()!!
-
         }catch (e: IOException){
             return e.toString()
         }
@@ -47,9 +73,12 @@ class Okhttp{
         try {
             var request= Request.Builder()
                 .url(url!!)
+                .delete()
                 .build()
             response = client!!.newCall(request).execute()
+
             return response.body()?.string()!!
+
         }catch (e: IOException){
             return e.toString()
         }
@@ -70,5 +99,4 @@ class Okhttp{
         }
         return null
     }
-
 }
