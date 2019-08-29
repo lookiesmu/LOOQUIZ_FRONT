@@ -17,7 +17,14 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Main2">
+        <activity android:name=".EditPWActivity">
+        </activity>
+        <activity android:name=".MakingQuizActivity">
+        </activity>
+        <activity
+                android:name=".Main2Activity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".QuizRateActivity">
         </activity>

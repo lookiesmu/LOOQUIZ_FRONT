@@ -2,14 +2,14 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal">
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <TextView
-            android:id="@+id/quiz5"
+            android:id="@+id/quiz_hint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:layout_height="match_parent"
+            android:text="힌트"
+            android:textSize="14dp"
             android:textColor="#000000"/>
 
 </LinearLayout>

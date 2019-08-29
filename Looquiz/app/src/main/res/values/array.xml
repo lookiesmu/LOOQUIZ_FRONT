@@ -8,4 +8,11 @@
         <item>gmail.com</item>
         <item>nate.com</item>
     </string-array>
+
+    <string-array name="making_quiz_region">
+        <item>지역 선택</item>
+        <item>광화문</item>
+        <item>국립고궁박물관 </item>
+        <item>자경전</item>
+    </string-array>
 </resources>

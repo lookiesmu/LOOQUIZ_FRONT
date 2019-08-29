@@ -5,19 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_camera"
+                android:id="@+id/nav_mypage"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="마이페이지" />
         <item
-                android:id="@+id/nav_gallery"
+                android:id="@+id/nav_all"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="전체유적지" />
         <item
-                android:id="@+id/nav_slideshow"
+                android:id="@+id/nav_room"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="방" />
         <item
-                android:id="@+id/nav_manage"
+                android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_menu_manage"
                 android:title="설정" />
     </group>
