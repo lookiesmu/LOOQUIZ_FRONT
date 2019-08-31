@@ -17,12 +17,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".NoticeActivity"
-                  android:label="공지사항"
-                  android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".SettingActivity"
-                  android:label="설정"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".LicenseActivity">
+        </activity>
+        <activity
+                android:name=".NoticeActivity"
+                android:label="공지사항"
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+                android:name=".SettingActivity"
+                android:label="설정"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".EditPWActivity">
         </activity>
