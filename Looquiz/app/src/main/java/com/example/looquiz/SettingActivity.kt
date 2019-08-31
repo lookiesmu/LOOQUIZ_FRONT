@@ -32,16 +32,16 @@ class SettingActivity : AppCompatActivity() , NavigationView.OnNavigationItemSel
     inner class ListListener: AdapterView.OnItemClickListener{
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             when(position){
-                0 -> { //공지사항
-                    startActivity(Intent(applicationContext, NoticeActivity::class.java)) //회원정보수정
+                0 -> { //공지사항 및 자주 묻는 질문
+                    startActivity(Intent(applicationContext, NoticeActivity::class.java))
                 }
                 1 -> startActivity(Intent(applicationContext, EditPWActivity::class.java)) //회원정보수정
 
-                2 -> { //이용약관
+                2 -> { //도움말
 
                 }
                 3 -> { //라이센스
-
+                    startActivity(Intent(applicationContext, LicenseActivity::class.java))
                 }
             }
         }
