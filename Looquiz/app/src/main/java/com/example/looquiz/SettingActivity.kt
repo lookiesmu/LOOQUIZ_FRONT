@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.content_setting.*
 
 class SettingActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
-    var settingData = arrayOf("공지사항", "회원정보수정", "이용약관", "라이센스")
+    var settingData = arrayOf("공지사항 및 자주 묻는 질문", "회원정보수정", "도움말", "라이센스")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +33,10 @@ class SettingActivity : AppCompatActivity() , NavigationView.OnNavigationItemSel
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             when(position){
                 0 -> { //공지사항
-
+                    startActivity(Intent(applicationContext, NoticeActivity::class.java)) //회원정보수정
                 }
-                1 -> { //회원정보수정
+                1 -> startActivity(Intent(applicationContext, EditPWActivity::class.java)) //회원정보수정
 
-                    startActivity(Intent(applicationContext, EditPWActivity::class.java))
-                }
                 2 -> { //이용약관
 
                 }
