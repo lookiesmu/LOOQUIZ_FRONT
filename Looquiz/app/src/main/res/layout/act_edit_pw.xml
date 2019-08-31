@@ -25,7 +25,7 @@
                 android:layout_height="40dp"
                 android:padding="3dp"
                 android:background="@drawable/quiz_inputbox"
-                android:hint="비밀번호를 입력해주세요"/>
+                android:hint="비밀번호를 입력해주세요" android:id="@+id/editpw_inputpw"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                 android:layout_height="40dp"
                 android:padding="3dp"
                 android:background="@drawable/quiz_inputbox"
-                android:hint="비밀번호를 다시 입력해주세요"/>
+                android:hint="비밀번호를 다시 입력해주세요" android:id="@+id/editpw_inputpw2"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="wrap_content"
