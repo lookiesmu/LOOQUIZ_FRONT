@@ -55,7 +55,7 @@ class MyPageActivity : AppCompatActivity() {
 
             }
             else if(state == 1) {
-                response = Okhttp(applicationContext).PUT(client, url)
+                response = Okhttp(applicationContext).GET(client, url)
             }
 
             else if(state == 2) {

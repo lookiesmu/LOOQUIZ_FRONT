@@ -19,7 +19,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
-                android:entries="@array/making_quiz_region"
+                android:entries="@array/quiz_region"
                 android:padding="2dp"
                 android:spinnerMode="dropdown"/>
         <View
@@ -27,7 +27,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="4"/>
     </LinearLayout>
-   <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"

@@ -104,12 +104,39 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_gbg -> {
-                Toast.makeText(this, "메뉴 경복궁 누름", Toast.LENGTH_LONG).show()
+            R.id.action_seoul -> {
+                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                Log.d("지역 메뉴 선택>> ", ""+item.title)
                 return true
             }
-            R.id.action_bukchon -> {
+            R.id.action_gyeonggi -> {
                 Toast.makeText(this, "메뉴 북촌한옥마을 누름", Toast.LENGTH_LONG).show()
+                //des = LatLng(37.5824994,126.9833762)
+                return true
+            }
+            R.id.action_gangwon -> {
+                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                return true
+            }
+            R.id.action_chungcheong -> {
+                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                return true
+            }
+            R.id.action_gyeongsang -> {
+                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                return true
+            }
+            R.id.action_jeolla -> {
+                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                return true
+            }
+            R.id.action_jeu -> {
+                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                Log.d("지역 메뉴 선택>> ", ""+item.title)
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -185,21 +212,21 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             gMap?.setOnInfoWindowClickListener {
                 distance = getDistance(userLoc, it.position)
                 Log.d("최종 거리계산 >> ", "${distance}km")
- //               if(distance<= 70) {
-                    when (it) {
-                        marker1 -> {
-                            //Toast.makeText(applicationContext, "main2 광화문", Toast.LENGTH_LONG).show()
-                            makeQuiz(marker1?.title)
-                        }
-                        marker2 -> makeQuiz(marker2?.title)
-                        marker3 -> makeQuiz(marker3?.title)
-                        marker4 -> makeQuiz(marker4?.title)
-                        marker5 -> makeQuiz(marker5?.title)
-                        marker6 -> makeQuiz(marker6?.title)
-                        marker7 -> makeQuiz(marker7?.title)
-                        marker8 -> makeQuiz(marker8?.title)
-                        marker9 -> makeQuiz(marker9?.title)
+                //               if(distance<= 70) {
+                when (it) {
+                    marker1 -> {
+                        //Toast.makeText(applicationContext, "main2 광화문", Toast.LENGTH_LONG).show()
+                        makeQuiz(marker1?.title)
                     }
+                    marker2 -> makeQuiz(marker2?.title)
+                    marker3 -> makeQuiz(marker3?.title)
+                    marker4 -> makeQuiz(marker4?.title)
+                    marker5 -> makeQuiz(marker5?.title)
+                    marker6 -> makeQuiz(marker6?.title)
+                    marker7 -> makeQuiz(marker7?.title)
+                    marker8 -> makeQuiz(marker8?.title)
+                    marker9 -> makeQuiz(marker9?.title)
+                }
 //                }else Toast.makeText(applicationContext, "문제를 풀 수 없습니다.", Toast.LENGTH_LONG).show()
             }
 
