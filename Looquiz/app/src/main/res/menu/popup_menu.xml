@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-            android:id="@+id/action_gbg"
-            android:title="@string/popup_menu_gbg"
+            android:id="@+id/app_bar_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Search"
+            app:actionViewClass="android.support.v7.widget.SearchView"
+            app:showAsAction="always|collapseActionView"/>
+    <item
+            android:id="@+id/action_seoul"
+            android:title="@string/menu_seoul"
             android:orderInCategory="100"
             app:showAsAction="never"/>
     <item
-            android:id="@+id/action_bukchon"
-            android:title="@string/popup_menu_bukchon"
+            android:id="@+id/action_gyeonggi"
+            android:title="@string/menu_gyeonggi"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/action_gangwon"
+            android:title="@string/menu_gangwon"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/action_chungcheong"
+            android:title="@string/menu_chungcheong"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/action_gyeongsang"
+            android:title="@string/menu_gyeongsang"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/action_jeolla"
+            android:title="@string/menu_jeolla"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+    <item
+            android:id="@+id/action_jeu"
+            android:title="@string/menu_jeju"
             android:orderInCategory="100"
             app:showAsAction="never"/>
 </menu>
