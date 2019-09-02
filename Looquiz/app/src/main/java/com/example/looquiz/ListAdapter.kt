@@ -24,7 +24,7 @@ class ListAdapter(private val list: List<roomlist_dataclass>)
         holder.bind(roomList)
         holder.itemView.setOnClickListener {
             Log.d(TAG,"Clicked: ${list.get(position).roomC}")
-            startActivity(Intent(,RoomInfo::class.java))//방 목록에서 방누르면 방정보로 넘어가는 코드인데 오류생김...
+            //startActivity(Intent(apRoomInfo::class.java))//방 목록에서 방누르면 방정보로 넘어가는 코드인데 오류생김...
         }
     }
 

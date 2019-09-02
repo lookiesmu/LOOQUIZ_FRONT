@@ -19,13 +19,12 @@ class SignInActivity : AppCompatActivity() {
 
 
         signin_btnsignin.setOnClickListener {
-            /*Asynctask().execute(
+            Asynctask().execute(
                 getString(R.string.signin),
                 signin_inputID.text.toString(),
                 signin_inputPW.text.toString()
-            )*/
-            startActivity(Intent(applicationContext,MainActivity::class.java))
-            finish()
+            )
+
         }
 
         signin_btnsignup.setOnClickListener {
