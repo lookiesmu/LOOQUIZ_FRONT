@@ -3,39 +3,57 @@ package com.example.looquiz
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.ListFragment
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
+import kotlinx.android.synthetic.main.list_fragment.*
 
-class ListOfRoom : ListFragment() {
+/**
+ * A simple [Fragment] subclass.
+ *
+ */
 
-    var textView: TextView? = null
-    var list = arrayOf("경복궁관광1", "경복궁관광2", "경복궁관광3", "경복궁관광4", "경복궁관광5")
-    var str1:String? = null
+class ListOfRoom : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.list_fragment, container, false)
+    val mNicolasCageMovies = listOf(
+        roomlist_dataclass("Raising Arizona", "1987"),
+        roomlist_dataclass("Vampire's Kiss", "1988"),
+        roomlist_dataclass("Con Air", "1997"),
+        roomlist_dataclass("Gone in 60 Seconds", "1997"),
+        roomlist_dataclass("National Treasure", "2004")
+    )
 
-        textView = view.findViewById<TextView>(R.id.textView)
 
-        var adapter = ArrayAdapter<String>(
-            activity, android.R.layout.simple_list_item_1, list
-        )
-
-        listAdapter = adapter
-
-        return view
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
     }
 
-/*    override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
-        super.onListItemClick(l, v, position, id)
-    }*/
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.list_fragment, container, false)
 
+    // populate the views now that the layout has been inflated
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // RecyclerView node initialized here
+        list_recycler_view.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = ListAdapter(mNicolasCageMovies)
+        }
+    }
+
+    companion object {
+        fun newInstance(): ListOfRoom = ListOfRoom()
+    }
 }

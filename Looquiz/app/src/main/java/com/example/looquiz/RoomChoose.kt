@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.util.Log
+import android.view.View
 import kotlinx.android.synthetic.main.room_choose.*
 
 class RoomChoose : AppCompatActivity() {
@@ -27,7 +29,7 @@ class RoomChoose : AppCompatActivity() {
         for(i in 0..1){
             //var sub = SubFragment()
             var listF = ListOfRoom()
-            listF.str1 = "Sub ${i + 1}"
+//            listF.str1 = "Sub ${i + 1}"
 
             frag_list.add(listF)
             title_list.add("내가 만든 방")
@@ -36,6 +38,8 @@ class RoomChoose : AppCompatActivity() {
 
         pager.adapter = PagerAdapter(supportFragmentManager)
         tabs.setupWithViewPager(pager)
+
+
     }
 
     inner class PagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
@@ -53,5 +57,3 @@ class RoomChoose : AppCompatActivity() {
         }
     }
 }
-
-
