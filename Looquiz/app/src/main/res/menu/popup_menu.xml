@@ -12,7 +12,7 @@
             android:title="@string/menu_seoul"
             android:orderInCategory="100"
             app:showAsAction="never"/>
-    <item
+    <!--<item
             android:id="@+id/action_gyeonggi"
             android:title="@string/menu_gyeonggi"
             android:orderInCategory="100"
@@ -26,13 +26,13 @@
             android:id="@+id/action_chungcheong"
             android:title="@string/menu_chungcheong"
             android:orderInCategory="100"
-            app:showAsAction="never"/>
+            app:showAsAction="never"/>-->
     <item
             android:id="@+id/action_gyeongsang"
             android:title="@string/menu_gyeongsang"
             android:orderInCategory="100"
             app:showAsAction="never"/>
-    <item
+    <!--<item
             android:id="@+id/action_jeolla"
             android:title="@string/menu_jeolla"
             android:orderInCategory="100"
@@ -41,5 +41,5 @@
             android:id="@+id/action_jeu"
             android:title="@string/menu_jeju"
             android:orderInCategory="100"
-            app:showAsAction="never"/>
+            app:showAsAction="never"/>-->
 </menu>
