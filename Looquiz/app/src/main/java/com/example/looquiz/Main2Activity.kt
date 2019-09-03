@@ -39,15 +39,15 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     var quizList = arrayOf("정답임", "오답임", "오답", "옳지 않은 보기", "관련없는 보기")
 
-    lateinit var q1: LatLng
-    lateinit var q2: LatLng
-    lateinit var q3: LatLng
-    lateinit var q4: LatLng
-    lateinit var qu5: LatLng
-    lateinit var q6: LatLng
-    lateinit var q7: LatLng
-    lateinit var q8: LatLng
-    lateinit var q9: LatLng
+    lateinit var quest1: LatLng
+    lateinit var quest2: LatLng
+    lateinit var quest3: LatLng
+    lateinit var quest4: LatLng
+    lateinit var quest5: LatLng
+    lateinit var quest6: LatLng
+    lateinit var quest7: LatLng
+    lateinit var quest8: LatLng
+    lateinit var quest9: LatLng
 
     var permission_list = arrayOf(
         android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -59,15 +59,15 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(R.layout.act_main2)
         setSupportActionBar(toolbar)
 
-        q1 = LatLng(37.575840, 126.977009) //광화문
-        q2 = LatLng(37.577166, 126.976795) //문양전 보물 343호
-        q3 = LatLng(37.577961, 126.976866) //경복궁
-        q4 = LatLng(37.580314, 126.978075)//자경전
-        qu5 = LatLng(37.578104, 126.979406)//건춘문
-        q6 = LatLng(37.577981, 126.974301) //비격진천뢰(천상열차분야지도 각석)
-        q7 = LatLng(37.583146, 126.977261)//명성황후조난지(건청궁)
-        q8 = LatLng(37.575946, 126.9744144) //홍례문
-        q9 = LatLng(37.5759947, 126.9746318)//국립고궁박물관
+        quest1 = LatLng(37.575840, 126.977009) //광화문
+        quest2 = LatLng(37.577166, 126.976795) //문양전 보물 343호
+        quest3 = LatLng(37.577961, 126.976866) //경복궁
+        quest4 = LatLng(37.580314, 126.978075)//자경전
+        quest5 = LatLng(37.578104, 126.979406)//건춘문
+        quest6 = LatLng(37.577981, 126.974301) //비격진천뢰(천상열차분야지도 각석)
+        quest7 = LatLng(37.583146, 126.977261)//명성황후조난지(건청궁)
+        quest8 = LatLng(37.575946, 126.9744144) //홍례문
+        quest9 = LatLng(37.5759947, 126.9746318)//국립고궁박물관
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -100,49 +100,45 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_seoul -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                //showRegionList(item.title.toString())
                 return true
             }
-            R.id.action_gyeonggi -> {
-                Toast.makeText(this, "메뉴 북촌한옥마을 누름", Toast.LENGTH_LONG).show()
-                //des = LatLng(37.5824994,126.9833762)
+            /*R.id.action_gyeonggi -> {
+                showRegionList(item.title.toString())
                 return true
             }
             R.id.action_gangwon -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                showRegionList(item.title.toString())
                 return true
             }
             R.id.action_chungcheong -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                Log.d("지역 메뉴 선택>> ", ""+item.title)
+                //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                return true
+            }*/
+            R.id.action_gyeongsang -> { //경주
+                //showRegionList(item.title.toString())
                 return true
             }
-            R.id.action_gyeongsang -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                Log.d("지역 메뉴 선택>> ", ""+item.title)
-                return true
-            }
-            R.id.action_jeolla -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                Log.d("지역 메뉴 선택>> ", ""+item.title)
-                return true
-            }
-            R.id.action_jeu -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                Log.d("지역 메뉴 선택>> ", ""+item.title)
-                return true
-            }
+            /* R.id.action_jeolla -> {
+                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                 return true
+             }
+             R.id.action_jeu -> {
+                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                 return true
+             }*/
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
+    /*
+        fun showRegionList(region: String){
+            regionListBuilder = AlertDialog.Builder(this)
+            regionListBuilder.setTitle(region+" 리스트")
+            Asynctask().execute("0", getString(R.string.cityname), region)
+        }
+    */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -184,29 +180,28 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         override fun onMapReady(p0: GoogleMap?) {
             gMap = p0
             getMyLocation()
-
             Log.d("현위치 >>", "userLoc ${userLoc}")
 
             gMap?.animateCamera(CameraUpdateFactory.zoomTo(15f))
-            gMap?.moveCamera(CameraUpdateFactory.newLatLng(q1))
+            gMap?.moveCamera(CameraUpdateFactory.newLatLng(quest1))
 
-            var marker1 = gMap?.addMarker(MarkerOptions().position(q1))
+            var marker1 = gMap?.addMarker(MarkerOptions().position(quest1))
             marker1?.title = "광화문"
-            var marker2 = gMap?.addMarker(MarkerOptions().position(q2))
+            var marker2 = gMap?.addMarker(MarkerOptions().position(quest2))
             marker2?.title = "문양전 보물 343호"
-            var marker3 = gMap?.addMarker(MarkerOptions().position(q3))
+            var marker3 = gMap?.addMarker(MarkerOptions().position(quest3))
             marker3?.title = "경복궁"
-            var marker4 = gMap?.addMarker(MarkerOptions().position(q4))
+            var marker4 = gMap?.addMarker(MarkerOptions().position(quest4))
             marker4?.title = "자경전"
-            var marker5 = gMap?.addMarker(MarkerOptions().position(qu5))
+            var marker5 = gMap?.addMarker(MarkerOptions().position(quest5))
             marker5?.title = "건춘문"
-            var marker6 = gMap?.addMarker(MarkerOptions().position(q6))
+            var marker6 = gMap?.addMarker(MarkerOptions().position(quest6))
             marker6?.title = "비격진천뢰(천상열차분야지도 각석)"
-            var marker7 = gMap?.addMarker(MarkerOptions().position(q7))
+            var marker7 = gMap?.addMarker(MarkerOptions().position(quest7))
             marker7?.title = "명성황후조난지(건청궁)"
-            var marker8 = gMap?.addMarker(MarkerOptions().position(q8))
+            var marker8 = gMap?.addMarker(MarkerOptions().position(quest8))
             marker8?.title = "홍례문"
-            var marker9 = gMap?.addMarker(MarkerOptions().position(q9))
+            var marker9 = gMap?.addMarker(MarkerOptions().position(quest9))
             marker9?.title = "국립고궁박물관"
 
             gMap?.setOnInfoWindowClickListener {
@@ -400,8 +395,8 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         gMap?.isMyLocationEnabled = true
         gMap?.mapType = GoogleMap.MAP_TYPE_NORMAL //기본
 
-//        Log.d("Main2Activity des 확인 위도>> ", "${q1.latitude}")
-//        Log.d("Main2Activity des 확인 경도>> ", "${q1.longitude}")
+//        Log.d("Main2Activity des 확인 위도>> ", "${quest1.latitude}")
+//        Log.d("Main2Activity des 확인 경도>> ", "${quest1.longitude}")
     }
 
     inner class GetMyLocationListener : LocationListener {

@@ -12,7 +12,7 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AlertDialog
+import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     //var regionList = arrayOf("*  항목1","*  힝목2","*  항목3","*  항목4" )
     var regionList: Array<String>? = null
+    //var regionListBuilder = AlertDialog.Builder(this)
+    lateinit var regionListBuilder: AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,54 +116,41 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_seoul -> {
-                //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
                 showRegionList(item.title.toString())
                 return true
             }
-            R.id.action_gyeonggi -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                //des = LatLng(37.5824994,126.9833762)
+            /*R.id.action_gyeonggi -> {
+                showRegionList(item.title.toString())
                 return true
             }
             R.id.action_gangwon -> {
-                //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
                 showRegionList(item.title.toString())
                 return true
             }
             R.id.action_chungcheong -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                return true
+            }*/
+            R.id.action_gyeongsang -> { //경주
+                showRegionList(item.title.toString())
                 return true
             }
-            R.id.action_gyeongsang -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                return true
-            }
-            R.id.action_jeolla -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                return true
-            }
-            R.id.action_jeu -> {
-                Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                return true
-            }
+            /* R.id.action_jeolla -> {
+                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                 return true
+             }
+             R.id.action_jeu -> {
+                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
+                 return true
+             }*/
             else -> return super.onOptionsItemSelected(item)
         }
     }
 
     fun showRegionList(region: String){
-
+        regionListBuilder = AlertDialog.Builder(this)
+        regionListBuilder.setTitle(region+" 리스트")
         Asynctask().execute("0", getString(R.string.cityname), region)
-        var regionListBuilder = AlertDialog.Builder(applicationContext)
-        regionListBuilder.setTitle(region+" 리스트")
-        /*var regionListBuilder = AlertDialog.Builder(this)
-        regionListBuilder.setTitle(region+" 리스트")
-        Toast.makeText(this, "선택 지역: "+region, Toast.LENGTH_LONG).show()
-        Log.d("regionList", ""+regionList)
-        regionListBuilder.setItems(regionList, null)
-        //regionListBuilder.setSingleChoiceItems(regionList, -1, null)
-        regionListBuilder.setNegativeButton("닫기", null)
-        regionListBuilder.show()*/
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -300,22 +289,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     inner class Asynctask: AsyncTask<String, Void, String>() {
         var state = -1 // GET_regionList = 0(전체도시 리스트 조회)  POST_enterRoom = 1(방 참여)
         var response: String? = null
-        var cityNm:String? = null
 
         override fun doInBackground(vararg params: String): String? {
             state = Integer.parseInt(params[0])
             var client = OkHttpClient()
             var url = params[1]
-            //cityNm = params[2]
 
             if(state == 0){ //전체 도시 리스트
-                Log.d("param 확인", ""+params)
                 Log.d("param[2] 확인", ""+params[2])
 
                 var cityname = params[2]
                 url = url + "${cityname}"
                 Log.d("확인2", url)
                 response = Okhttp(applicationContext).GET(client, url)
+
             } else if(state == 1){
                 var codenum = params[2]
                 response = Okhttp(applicationContext).POST(client, url, CreateJson().json_enterroom(codenum))
@@ -332,8 +319,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 return
             } else{
-
-                Log.d("result 확인", ""+result)
                 var json = JSONObject(result)
 
                 if(state == 0) {
@@ -341,14 +326,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         var jsonArray = json.getJSONArray("data")
                         Log.d("data 확인", "" + jsonArray)
                         var regList = Array<String>(jsonArray.length(), { "" })
+
                         for (i in 0 until jsonArray.length()) {
                             regList?.set(i, jsonArray.get(i).toString())
                         }
+
                         regionList = regList
-                        Log.d("regionList", "" + regionList)
+                        regionListBuilder.setItems(regionList, null)
+                        //regionListBuilder.setSingleChoiceItems(regionList, -1, null)
+                        regionListBuilder.setNegativeButton("닫기", null)
+                        regionListBuilder.show()
 
                     } else { //message == 0
-                        Toast.makeText(applicationContext, "", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
                     }
                 } else if(state == 1){
                     if (json.getInt("message") == 1) {
