@@ -202,6 +202,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             gMap?.setOnInfoWindowClickListener {
                 //                if(distance <= 100) {
                 val intent = Intent(applicationContext, Main2Activity::class.java)
+                //Log.d("마커 title >>", ""+MarkerOptions().position(desLng).title("경복궁").title)
+                intent.putExtra("regionName", MarkerOptions().position(desLng).title("경복궁").title)
                 startActivity(intent)
 //                }else Toast.makeText(applicationContext, "접근할 수 없습니다.", Toast.LENGTH_LONG).show()
 
@@ -351,6 +353,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
 
 }

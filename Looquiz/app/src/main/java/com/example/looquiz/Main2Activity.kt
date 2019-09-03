@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.AsyncTask
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -28,6 +29,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.act_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main2.*
+import okhttp3.OkHttpClient
+import org.json.JSONObject
 
 class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,6 +62,12 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_main2)
         setSupportActionBar(toolbar)
+
+        val intent = getIntent()
+        region.text = intent.getStringExtra("regionName")
+        var rName = intent.getStringExtra("regionName")
+
+        Asynctask().execute("0", getString(R.string.region_quizlist), rName)
 
         quest1 = LatLng(37.575840, 126.977009) //광화문
         quest2 = LatLng(37.577166, 126.976795) //문양전 보물 343호
@@ -412,6 +422,52 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
 
         override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+        }
+    }
+
+    inner class Asynctask: AsyncTask<String, Void, String>() {
+        var state = -1 //POST_regionQuizList= 0
+        var response:String? = null
+
+        override fun doInBackground(vararg params: String?): String? {
+            state = Integer.parseInt(params[0])
+            var client = OkHttpClient()
+            var url = params[1]
+
+            Log.d("param[2] 확인", ""+params[2])
+
+            if(state == 0){ //퀴즈 리스트 조회
+                var rname = params[2]
+                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_regionquizlist(rname))
+
+            }
+            Log.d("통신 결과 response >> ", response)
+
+            return response
+        }
+
+        override fun onPostExecute(result: String) {
+            if(!result.isNullOrEmpty()) Log.d("checktest", result)
+
+            if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
+                Toast.makeText(applicationContext,"네트워크 연결이 좋지 않습니다", Toast.LENGTH_SHORT).show()
+
+                return
+            } else{
+                var json = JSONObject(result)
+
+                if(state == 0){
+                    if(json.getInt("message") == 1){
+                        var jsonArray = json.getJSONArray("data")
+                        Log.d("data 확인", "" + jsonArray)
+
+                    } else{ //state=0, message = 0
+                        Toast.makeText(applicationContext, "네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+            }
+
         }
     }
 }
