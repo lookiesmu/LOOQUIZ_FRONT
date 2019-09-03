@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.act_quizrate.*
 class QuizRateActivity : AppCompatActivity() {
 
     var cityList = arrayListOf<QuizRate>(
-        QuizRate("gyeong","경복궁",6),
+        QuizRate("gyeongbak","경복궁",6),
         QuizRate("gwanghwa","광화문",2),
         QuizRate("duck","덕수궁",8)
 

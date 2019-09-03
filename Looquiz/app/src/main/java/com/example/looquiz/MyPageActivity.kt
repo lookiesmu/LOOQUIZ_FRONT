@@ -1,5 +1,6 @@
 package com.example.looquiz
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +14,7 @@ import org.json.JSONObject
 
 class MyPageActivity : AppCompatActivity() {
 
-    var corplist = arrayOf("*  항목1","*  힝목2","*  항목3","*  항목4" )
+    var corplist : Array<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,12 @@ class MyPageActivity : AppCompatActivity() {
     inner class Asynctask: AsyncTask<String, Void, String>() {
         var state = -1 //GET_badge = 0 , GET_citylist = 1 ,GET_corplist = 2
         var response : String? = null
+        var progress = ProgressDialog(applicationContext)
+
+        override fun onPreExecute() {
+
+            progress.show()
+        }
 
         override fun doInBackground(vararg params: String): String? {
             state = Integer.parseInt(params[0])
@@ -55,7 +62,7 @@ class MyPageActivity : AppCompatActivity() {
 
             }
             else if(state == 1) {
-                response = Okhttp(applicationContext).PUT(client, url)
+                response = Okhttp(applicationContext).GET(client, url)
             }
 
             else if(state == 2) {
@@ -95,7 +102,16 @@ class MyPageActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"비밀번호 수정에 실패하였습니다", Toast.LENGTH_SHORT).show()
                     }
                 }
+                else{
+                    var jsonArray = json.getJSONArray("data")
+                    var corpary = Array<String>(jsonArray.length(),{""})
+                    for(i in 0 until jsonArray.length()){
+                        corpary?.set(i,jsonArray.get(i).toString())
+                    }
+                    corplist = corpary
+                }
             }
+            progress.dismiss()
         }
     }
 }
