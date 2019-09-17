@@ -16,8 +16,10 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -30,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.act_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main2.*
+import kotlinx.android.synthetic.main.dia_quiz.view.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
 
@@ -41,7 +44,8 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     lateinit var userLoc: Location
     var distance = 0.0
 
-    var quizList = arrayOf("정답임", "오답임", "오답", "옳지 않은 보기", "관련없는 보기")
+    //var quizList = arrayOf("정답임", "오답임", "오답", "옳지 않은 보기", "관련없는 보기")
+    var quizList:Array<String>? = null
 
     lateinit var quest1: LatLng
     lateinit var quest2: LatLng
@@ -52,11 +56,15 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     lateinit var quest7: LatLng
     lateinit var quest8: LatLng
     lateinit var quest9: LatLng
+    lateinit var quest10: LatLng
 
     var permission_list = arrayOf(
         android.Manifest.permission.ACCESS_FINE_LOCATION,
         android.Manifest.permission.ACCESS_COARSE_LOCATION
     )
+
+    lateinit var diaQuizView:View
+    //var diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,14 +78,15 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         Asynctask().execute("0", getString(R.string.region_quizlist), rName)
 
         quest1 = LatLng(37.575840, 126.977009) //광화문
-        quest2 = LatLng(37.577166, 126.976795) //문양전 보물 343호
-        quest3 = LatLng(37.577961, 126.976866) //경복궁
-        quest4 = LatLng(37.580314, 126.978075)//자경전
-        quest5 = LatLng(37.578104, 126.979406)//건춘문
-        quest6 = LatLng(37.577981, 126.974301) //비격진천뢰(천상열차분야지도 각석)
-        quest7 = LatLng(37.583146, 126.977261)//명성황후조난지(건청궁)
-        quest8 = LatLng(37.575946, 126.9744144) //홍례문
-        quest9 = LatLng(37.5759947, 126.9746318)//국립고궁박물관
+        quest2 = LatLng(37.5834703,126.9752437) //신무문
+        quest3 = LatLng(37.5760892,126.9793858) //동십자각
+        quest4 = LatLng(37.5785225,126.9769845)//근정전
+        quest5 = LatLng(37.5790885,126.977044)//사정전
+        quest6 = LatLng(37.580314, 126.978075) //자경전
+        quest7 = LatLng(37.5798388,126.975708)//경회루
+        quest8 = LatLng(37.5825542,126.9741758) //태원전
+        quest9 =  LatLng(37.583146, 126.977261) //건청궁
+        quest10 = LatLng(37.5759947, 126.9746318)//국립고궁박물관
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -115,30 +124,10 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 //showRegionList(item.title.toString())
                 return true
             }
-            /*R.id.action_gyeonggi -> {
-                showRegionList(item.title.toString())
-                return true
-            }
-            R.id.action_gangwon -> {
-                showRegionList(item.title.toString())
-                return true
-            }
-            R.id.action_chungcheong -> {
-                //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                return true
-            }*/
             R.id.action_gyeongsang -> { //경주
                 //showRegionList(item.title.toString())
                 return true
             }
-            /* R.id.action_jeolla -> {
-                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                 return true
-             }
-             R.id.action_jeu -> {
-                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                 return true
-             }*/
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -197,22 +186,32 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
             var marker1 = gMap?.addMarker(MarkerOptions().position(quest1))
             marker1?.title = "광화문"
+            marker1?.tag = 1
+            /*
+            var map1: HashMap<MarkerOptions().position(quest1), Int> = hashMapOf(marker1 to 1)
+            var map = HashMap<String, Int>()
+            map.put("one", 1)
+            map.put("four", 4)
+            Log.d("map Log", ""+map.get("four"))
+            */
             var marker2 = gMap?.addMarker(MarkerOptions().position(quest2))
-            marker2?.title = "문양전 보물 343호"
+            marker2?.title = "신무문"
             var marker3 = gMap?.addMarker(MarkerOptions().position(quest3))
-            marker3?.title = "경복궁"
+            marker3?.title = "동십자각"
             var marker4 = gMap?.addMarker(MarkerOptions().position(quest4))
-            marker4?.title = "자경전"
+            marker4?.title = "근정전"
             var marker5 = gMap?.addMarker(MarkerOptions().position(quest5))
-            marker5?.title = "건춘문"
+            marker5?.title = "사정전"
             var marker6 = gMap?.addMarker(MarkerOptions().position(quest6))
-            marker6?.title = "비격진천뢰(천상열차분야지도 각석)"
+            marker6?.title = "자경전"
             var marker7 = gMap?.addMarker(MarkerOptions().position(quest7))
-            marker7?.title = "명성황후조난지(건청궁)"
+            marker7?.title = "경회루"
             var marker8 = gMap?.addMarker(MarkerOptions().position(quest8))
-            marker8?.title = "홍례문"
+            marker8?.title = "태원전"
             var marker9 = gMap?.addMarker(MarkerOptions().position(quest9))
-            marker9?.title = "국립고궁박물관"
+            marker9?.title = "건청궁"
+            var marker10 = gMap?.addMarker(MarkerOptions().position(quest9))
+            marker10?.title = "국립고궁박물관"
 
             gMap?.setOnInfoWindowClickListener {
                 distance = getDistance(userLoc, it.position)
@@ -220,17 +219,19 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 //               if(distance<= 70) {
                 when (it) {
                     marker1 -> {
-                        //Toast.makeText(applicationContext, "main2 광화문", Toast.LENGTH_LONG).show()
-                        makeQuiz(marker1?.title)
+                        Log.d("marker1 tag >> ", ""+marker1?.tag)
+                        Log.d("marker1 tag >> ", ""+marker1?.tag.toString().toInt())
+                        makeQuiz(marker1?.title, marker1?.tag.toString().toInt())
                     }
-                    marker2 -> makeQuiz(marker2?.title)
-                    marker3 -> makeQuiz(marker3?.title)
-                    marker4 -> makeQuiz(marker4?.title)
-                    marker5 -> makeQuiz(marker5?.title)
-                    marker6 -> makeQuiz(marker6?.title)
-                    marker7 -> makeQuiz(marker7?.title)
-                    marker8 -> makeQuiz(marker8?.title)
-                    marker9 -> makeQuiz(marker9?.title)
+                    marker2 -> makeQuiz(marker2?.title, marker2?.tag.toString().toInt())
+                    marker3 -> makeQuiz(marker3?.title, marker3?.tag.toString().toInt())
+                    marker4 -> makeQuiz(marker4?.title, marker4?.tag.toString().toInt())
+                    marker5 -> makeQuiz(marker5?.title, marker5?.tag.toString().toInt())
+                    marker6 -> makeQuiz(marker6?.title, marker6?.tag.toString().toInt())
+                    marker7 -> makeQuiz(marker7?.title, marker7?.tag.toString().toInt())
+                    marker8 -> makeQuiz(marker8?.title, marker8?.tag.toString().toInt())
+                    marker9 -> makeQuiz(marker9?.title, marker9?.tag.toString().toInt())
+                    marker10 -> makeQuiz(marker10?.title, marker10?.tag.toString().toInt())
                 }
 //                }else Toast.makeText(applicationContext, "문제를 풀 수 없습니다.", Toast.LENGTH_LONG).show()
             }
@@ -248,21 +249,23 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
     }
 
-    fun makeQuiz(regionName: String?) {
+    fun makeQuiz(regionName: String?, quizId: Int) {//fun makeQuiz(regionName: String?, quizId: Int)
+        Asynctask().execute("1",getString(R.string.before_quiz), quizId.toString())
+
         var quizBuilder = AlertDialog.Builder(this@Main2Activity)
-        var diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
+        diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
         //var diaQuizBtnView = layoutInflater.inflate(R.layout.dia_quiz_button, null)
         var quizBuilder2: AlertDialog = quizBuilder.create()
 
         var quizAnsBuilder = AlertDialog.Builder(this@Main2Activity)
         var quizAnsView = layoutInflater.inflate(R.layout.dia_ans, null)
-        var quizAnsBuilder2: AlertDialog = quizAnsBuilder.create()
+        //var quizAnsBuilder2: AlertDialog = quizAnsBuilder.create()
         quizAnsBuilder.setView(quizAnsView)
         quizAnsBuilder.setPositiveButton("확인", null)
 
         var quizWAnsBuilder = AlertDialog.Builder(this@Main2Activity)
         var quizWAnsView = layoutInflater.inflate(R.layout.dia_wans, null)
-        var quizWAnsBuilder2: AlertDialog = quizWAnsBuilder.create()
+        //var quizWAnsBuilder2: AlertDialog = quizWAnsBuilder.create()
         quizWAnsBuilder.setView(quizWAnsView)
         quizWAnsBuilder.setPositiveButton("닫기", null)
 
@@ -290,14 +293,14 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             }
         }
 
-        var listener = object : DialogInterface.OnClickListener {
+        var diaListListener = object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 if (selectItem == -1) {
                     Toast.makeText(this@Main2Activity, "항목을 선택해주세요", Toast.LENGTH_LONG).show()
                     quizBuilder2.dismiss()
-                    makeQuiz(regionName)
+                    makeQuiz(regionName, quizId)
                 } else {
-                    Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
                     quizBuilder2.dismiss()
                     //정답일 경우
                     quizAnsBuilder.show()
@@ -333,7 +336,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             quizBuilder2.dismiss()
         }
         */
-        quizBuilder.setPositiveButton("확인", listener)
+        quizBuilder.setPositiveButton("확인", diaListListener)
         quizBuilder.setNegativeButton("취소", null)
         quizBuilder.show()
 
@@ -426,23 +429,24 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state = -1 //POST_regionQuizList= 0
+        var state = -1 //POST_regionQuizList= 0 , POST_quizQuestion = 1
         var response:String? = null
 
         override fun doInBackground(vararg params: String?): String? {
             state = Integer.parseInt(params[0])
             var client = OkHttpClient()
             var url = params[1]
-
             Log.d("param[2] 확인", ""+params[2])
 
             if(state == 0){ //퀴즈 리스트 조회
                 var rname = params[2]
                 response = Okhttp(applicationContext).POST(client, url, CreateJson().json_regionquizlist(rname))
-
+            } else if(state == 1){ //퀴즈 문제 조회
+                var quizId = params[2].toString().toInt()
+                response = Okhttp(applicationContext).POST(client, url,CreateJson().json_beforequiz(quizId))
             }
-            Log.d("통신 결과 response >> ", response)
 
+            Log.d("통신 결과 response >> ", response)
             return response
         }
 
@@ -455,14 +459,30 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 return
             } else{
                 var json = JSONObject(result)
-
                 if(state == 0){
                     if(json.getInt("message") == 1){
                         var jsonArray = json.getJSONArray("data")
-                        Log.d("data 확인", "" + jsonArray)
+                        for (i in 0 until jsonArray.length()){
+                            Log.d("obj", ""+jsonArray.get(i))
+                            var jsonObject:JSONObject = jsonArray.getJSONObject(i)
+                            Log.d("obj > qid", ""+jsonObject.getInt("qid"))
+                            Log.d("obj > dname", ""+jsonObject.getString("dname"))
+                        }
 
                     } else{ //state=0, message = 0
+                        Log.d("Fail 0", " 0 네트워크 연결이 좋지 않음")
                         Toast.makeText(applicationContext, "네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
+                    }
+                } else if(state == 1){
+                    if (json.getInt("message") == 1){
+                        var jsonObject = json.getJSONObject("data")
+                        Log.d("data >> ", ""+jsonObject)
+                        diaQuizView.region_question.text= jsonObject.getString("qname")
+                        quizList = arrayOf(jsonObject.getString("qcontent1"), jsonObject.getString("qcontent2"),
+                            jsonObject.getString("qcontent3"), jsonObject.getString("qcontent4"), jsonObject.getString("qcontent5"))
+                    } else {
+                        Log.d("Fail 1", " 1 네트워크 연결이 좋지 않음")
+                        Toast.makeText(applicationContext, "1 네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
                     }
                 }
 
