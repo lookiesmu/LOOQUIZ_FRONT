@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:text="정답체크"/>
         <EditText
-                android:id="@+id/makingquiz_inputquestion"
+                android:id="@+id/editingquiz_inputquestion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="8"
@@ -83,31 +83,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             <EditText
-                    android:id="@+id/makingquiz_inputans1"
+                    android:id="@+id/editingquiz_inputans1"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="1번을 입력해주세요."
                     android:singleLine="true"/>
             <EditText
-                    android:id="@+id/makingquiz_inputans2"
+                    android:id="@+id/editingquiz_inputans2"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="2번을 입력해주세요."
                     android:singleLine="true"/>
             <EditText
-                    android:id="@+id/makingquiz_inputans3"
+                    android:id="@+id/editingquiz_inputans3"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="3번을 입력해주세요."
                     android:singleLine="true"/>
             <EditText
-                    android:id="@+id/makingquiz_inputans4"
+                    android:id="@+id/editingquiz_inputans4"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="4번을 입력해주세요."
                     android:singleLine="true"/>
             <EditText
-                    android:id="@+id/makingquiz_inputans5"
+                    android:id="@+id/editingquiz_inputans5"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:hint="5번을 입력해주세요."
@@ -115,7 +115,7 @@
         </LinearLayout>
     </LinearLayout>
     <EditText
-            android:id="@+id/makingquiz_inputhint"
+            android:id="@+id/editingquiz_inputhint"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="10dp"
@@ -125,7 +125,7 @@
             android:gravity="top"
             android:hint="힌트를 입력해주세요"/>
     <EditText
-            android:id="@+id/makingquiz_inputcontent"
+            android:id="@+id/editingquiz_inputcontent"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="10dp"
@@ -135,6 +135,7 @@
             android:gravity="top"
             android:hint="문제 해설을 입력해주세요"/>
     <Button
+            android:id="@+id/editingquiz_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
