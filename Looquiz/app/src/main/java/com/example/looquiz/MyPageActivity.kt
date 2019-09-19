@@ -22,10 +22,11 @@ class MyPageActivity : AppCompatActivity() {
 
         mypage_icon.setOnClickListener {
             Asynctask().execute("0",getString(R.string.badge))
+            startActivity(Intent(this,BadgeList::class.java))
         }
         mypage_btnquizrate.setOnClickListener {
             Asynctask().execute("1",getString(R.string.citylist))
-            startActivity(Intent(this,RateMapActivity::class.java))
+            startActivity(Intent(this,RegionList::class.java))
         }
 
         mypage_btncorplist.setOnClickListener {
