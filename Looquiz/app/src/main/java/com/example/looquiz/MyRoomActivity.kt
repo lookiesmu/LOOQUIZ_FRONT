@@ -4,39 +4,54 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.Toast
-import kotlinx.android.synthetic.main.act_signin.*
+import kotlinx.android.synthetic.main.act_myroom.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
 
-class SignInActivity : AppCompatActivity() {
+class MyRoomActivity : AppCompatActivity() {
+
+    //var quizlist: Array<String>? = null
+    var quizlist = ArrayList<Quizlist>()
+    var myroom_roomcodenum: String? = null
+    var myroom_roomtitle:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.act_signin)
+        setContentView(R.layout.act_myroom)
 
-        signin_checkbox.setOnClickListener { SharedClass(applicationContext).setAuto(signin_checkbox.isChecked) }
-        if(SharedClass(applicationContext).getAuto() && !SharedClass(applicationContext).getToken().isNullOrEmpty())
-            startActivity(Intent(applicationContext,MainActivity::class.java))
+        myroom_roomtitle = intent.getStringExtra("title")
+        myroom_roomcodenum = intent.getStringExtra("codenum")
+
+        myroom_title.text = myroom_roomtitle
+        myroom_codenum.text = myroom_roomcodenum
 
 
-        signin_btnsignin.setOnClickListener {
-            Asynctask().execute(
-                getString(R.string.signin),
-                signin_inputID.text.toString(),
-                signin_inputPW.text.toString()
-            )
+        val quizlistAdapter = QuizlistAdapter(this, this.myroom_roomcodenum!!,quizlist)
+        myroom_rv.adapter=quizlistAdapter
 
+        val quizlistlm = LinearLayoutManager(this)
+        myroom_rv.layoutManager =quizlistlm
+        myroom_rv.setHasFixedSize(true)
+
+
+        //멤버조회
+        myroom_member.setOnClickListener {
+
+            Asynctask().execute("2",getString(R.string.corplist))
+            var builder = AlertDialog.Builder(this)
+            builder.setTitle(myroom_roomtitle.toString())
+
+            builder.setNegativeButton("닫기",null)
+            //builder.setItems(quizlist,null)
+            builder.show()
         }
-
-        signin_btnsignup.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+        myroom_createquiz.setOnClickListener {
+            startActivity(Intent(this,MakingQuizActivity::class.java))
             finish()
-        }
-
-        signin_btnfind.setOnClickListener {
-            startActivity(Intent(this,FindIDActivity::class.java))
         }
     }
     inner class Asynctask: AsyncTask<String, Void, String>() {
@@ -45,10 +60,8 @@ class SignInActivity : AppCompatActivity() {
         override fun doInBackground(vararg params: String): String? {
             var client = OkHttpClient()
             var url = params[0]
-            var uid = params[1]
-            var pw = params[2]
-
-            response = Okhttp(applicationContext).POST(client,url,CreateJson().json_signin(uid,pw))
+            myroom_roomcodenum = params[1]
+            response = Okhttp(applicationContext).POST(client,url,CreateJson().json_searchmem(myroom_roomcodenum))
 
             return response
         }
@@ -82,3 +95,6 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 }
+
+
+

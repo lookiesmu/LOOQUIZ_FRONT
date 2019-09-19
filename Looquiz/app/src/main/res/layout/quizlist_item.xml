@@ -10,10 +10,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:id="@+id/roomlist_view">
+            android:id="@+id/quizlist_view">
 
         <TextView
-                android:id="@+id/roomlist_title"
+                android:id="@+id/quizlist_qname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -23,7 +23,7 @@
 
 
         <TextView
-                android:id="@+id/roomlist_codenum"
+                android:id="@+id/quizlist_dname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -37,8 +37,7 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/logout"
             android:layout_gravity="center_vertical"
-            android:id="@+id/roomlist_outroom"
+            android:id="@+id/quizlist_delete"
             android:layout_weight="1" android:padding="10dp"/>
-
 
 </LinearLayout>

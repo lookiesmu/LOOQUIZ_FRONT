@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 class MyPageActivity : AppCompatActivity() {
 
-    var corplist = arrayOf("*  항목1","*  힝목2","*  항목3","*  항목4" )
+    var corplist: Array<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +22,10 @@ class MyPageActivity : AppCompatActivity() {
 
         mypage_icon.setOnClickListener {
             Asynctask().execute("0",getString(R.string.badge))
-            startActivity(Intent(this,BadgeList::class.java))
         }
         mypage_btnquizrate.setOnClickListener {
             Asynctask().execute("1",getString(R.string.citylist))
-            startActivity(Intent(this,RegionList::class.java))
+            startActivity(Intent(this,RateMapActivity::class.java))
         }
 
         mypage_btncorplist.setOnClickListener {
@@ -80,21 +79,13 @@ class MyPageActivity : AppCompatActivity() {
             }
             else{
                 var json = JSONObject(result)
-                if(state == 0){
-                    if (json.getInt("message") == 1) {
-                        Toast.makeText(applicationContext,"비밀번호 확인 되었습니다", Toast.LENGTH_SHORT).show()
+                if (state == 2){
+                    var jsonArray = json.getJSONArray("data")
+                    var corpary = Array<String>(jsonArray.length(),{""})
+                    for(i in 0 until jsonArray.length()){
+                        corpary?.set(i,jsonArray.get(i).toString())
                     }
-                    else{
-                        Toast.makeText(applicationContext,"비밀번호 확인 실패하였습니다", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                else if(state == 1){
-                    if (json.getInt("message") == 1) {
-                        Toast.makeText(applicationContext,"새 비밀번호가 저장되었습니다", Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        Toast.makeText(applicationContext,"비밀번호 수정에 실패하였습니다", Toast.LENGTH_SHORT).show()
-                    }
+                    corplist = corpary
                 }
             }
         }
