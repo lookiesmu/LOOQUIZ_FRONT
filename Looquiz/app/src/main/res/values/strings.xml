@@ -390,4 +390,40 @@
         This General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License.
     ]]>
     </string>
+
+    <string-array name="chapter">
+        <item>3.0.5 버전 업데이트 안내</item>
+        <item>3.0.4 버전 업데이트 안내</item>
+        <item>Windows XP 버전 지원 중단 안내</item>
+        <item>3.0.3 버전 업데이트 안내</item>
+        <item>3.0.2 버전 업데이트 안내</item>
+        <item>보안 정책 강화 안내</item>
+    </string-array>
+
+    <string-array name="chapter1">
+        <item>카카오톡 사용자 여러분 안녕하세요,\n
+            ▽다들 궁금하셨을 PC톡 3.0.5 버전의 주요 업데이트 내용을 소개합니다.▽\n
+            ◼︎ 듣기만해도 시원해지는 연결음 추가!\n
+            띵디디딩 띠리디디딩~ 글자만 봐도 오디오 지원 되는듯한 보이스톡/페이스톡 연결음\n
+            남녀노소 불문하고 많은 분들께 벅찬 사랑을 받았었는데요~\n
+            항상 사랑에 목마른 카카오팀!\n
+            두 배, 세 배 더 많은 사랑을 받고 싶어 새로운 연결음을 준비했어요.</item>
+    </string-array>
+
+    <string-array name="chapter2">
+        <item>Section 4</item>
+        <item>Section 5</item>
+    </string-array>
+
+    <string-array name="chapter3">
+        <item>Section 6</item>
+        <item>Section 7</item>
+        <item>Section 8</item>
+        <item>Section 9</item>
+    </string-array>
+
+    <string-array name="chapter4">
+        <item>Section 10</item>
+    </string-array>
+
 </resources>

@@ -17,8 +17,21 @@ class SharedClass(context:Context){
     fun setToken(token : String){
         editPreferences.putString("token",token).apply()
     }
+
+    fun setAuto(auto : Boolean){ editPreferences.putBoolean("auto",auto).apply()}
     //새로 생성한 token 가져옴
     fun getToken():String?{
         return sharedPreferences.getString("token",null)
     }
+
+    fun getAuto() : Boolean{ return sharedPreferences.getBoolean("auto",false)}
+
+    fun setCodenum(codenum:String?){
+        editPreferences.putString("codenum",codenum).apply()
+    }
+    fun getCodenum():String?{
+        return sharedPreferences.getString("codenum",null)
+    }
 }
+
+
