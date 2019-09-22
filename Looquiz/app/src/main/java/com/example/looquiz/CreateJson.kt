@@ -111,10 +111,11 @@ class CreateJson {
         return JSONObject.toString()
     }
 
-    fun json_makeroom(qrname:String?,endtime:String?):String{
+    fun json_makeroom(qrname:String?,codenum: String?,endtime:String?):String{
 
         var JSONObject = JSONObject()
         JSONObject.put("qrname",qrname)
+        JSONObject.put("codenum",codenum)
         JSONObject.put("endtime",endtime)
 
         return JSONObject.toString()

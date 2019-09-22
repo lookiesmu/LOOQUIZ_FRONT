@@ -15,13 +15,12 @@ import okhttp3.OkHttpClient
 import org.json.JSONObject
 
 
-class QuizlistAdapter(val context: Context,val codenumber:String,val quizlist:ArrayList<Quizlist>)
+class QuizlistAdapter(val context: Context,val codenumber:String,val quizlist:ArrayList<Quizlist>,val visual:Boolean)
     :RecyclerView.Adapter<QuizlistAdapter.Holder>() {
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.quizlist_item,p0,false)
-        Asynctask().execute("0",context.getString(R.string.room_quizlist))
         return Holder(view)
     }
 
@@ -43,7 +42,7 @@ class QuizlistAdapter(val context: Context,val codenumber:String,val quizlist:Ar
             Quizview.setOnClickListener{
             }
             Quizdel.setOnClickListener {
-                Asynctask().execute("1",context.getString(R.string.delete_quiz),quiz.qid.toString() )
+                Asynctask().execute(context.getString(R.string.delete_quiz),quiz.qid.toString() )
                 quizlist.remove(quiz)
                 notifyDataSetChanged()
             }
@@ -51,21 +50,14 @@ class QuizlistAdapter(val context: Context,val codenumber:String,val quizlist:Ar
     }
     inner class Asynctask: AsyncTask<String, Void, String>() {
         var response: String? = null
-        var state:Int = -1//0 = POST_quizlist, 1 = Del_quiz
         override fun doInBackground(vararg params: String): String? {
             var client = OkHttpClient()
-            state = params[0].toInt()
-            var url = params[1]
+            var url = params[0]
 
+            url = url + params[1]
 
-            if(state == 0){
-                response = Okhttp(context).POST(client,url,CreateJson().json_roomquizlist(codenumber))
-            }
-            else {
-                url = url + params[2]
+            response = Okhttp(context).DELETE(client, url)
 
-                response = Okhttp(context).DELETE(client, url)
-            }
             return response
         }
 
@@ -74,17 +66,8 @@ class QuizlistAdapter(val context: Context,val codenumber:String,val quizlist:Ar
             if (!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
                 Toast.makeText(context, result, Toast.LENGTH_SHORT).show()
                 return
-            } else {
-                var json = JSONObject(result)
-                var jsonary = json.getJSONArray("data")
-                var message = json.getInt("message")
-                for(i in 0 until jsonary.length()){
-                    var jsonquiz = jsonary[0] as JSONObject
-                    var qid : Int = jsonquiz.getInt("qid")
-                    var dname : String = jsonquiz.getString("dname")
-                    var qname : String = jsonquiz.getString("qname")
-                    quizlist.add(Quizlist(qname,dname,qid))
-                }
+            }else{
+
             }
         }
     }

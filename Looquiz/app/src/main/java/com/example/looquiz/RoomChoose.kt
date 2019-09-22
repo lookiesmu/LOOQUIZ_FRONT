@@ -25,7 +25,11 @@ import java.time.LocalTime
 import kotlin.random.Random
 
 class RoomChoose : AppCompatActivity() {
-    var roomlist_dataclass : roomlist_dataclass? = null
+    //var roomlist_dataclass : roomlist_dataclass? = null
+    var makeroom_list = ArrayList<roomlist_dataclass>()
+    var joinroom_list = ArrayList<roomlist_dataclass>()
+
+    var room = roomlist_dataclass("","")
     var frag_list = ArrayList<ListOfRoomFragment>()
     var title_list = ArrayList<String>()
     var myRoom_Fragment = ListOfRoomFragment()
@@ -33,13 +37,13 @@ class RoomChoose : AppCompatActivity() {
 
 
     var qrname: String? = null
-    var create_codenum :String?= null
-
+    //var create_codenum :String?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.room_choose)
 
+        Asynctask().execute("0",getString(R.string.search_makeroom))
 
         supportActionBar?.hide()
 
@@ -84,10 +88,10 @@ class RoomChoose : AppCompatActivity() {
                     if(title!!.text.isNullOrEmpty())
                         Toast.makeText(applicationContext,"방 이름을 입력해주세요",Toast.LENGTH_SHORT).show()
                     else{
-                        Asynctask().execute("0",getString(R.string.make_room),title.toString()
+                        room.roomtitle = title.text.toString()
+                        room.roomcodenum = codenum
+                        Asynctask().execute("2",getString(R.string.make_room),title.text.toString(),codenum
                             ,"${date!!.year}${date!!.month+1}${date!!.dayOfMonth}")
-
-                        adapter.add(roomlist_dataclass(title.text.toString(),codenum))
                         dialog.dismiss()
                     }
                 }
@@ -100,7 +104,7 @@ class RoomChoose : AppCompatActivity() {
     }
     inner class Asynctask: AsyncTask<String, Void, String>() {
         var response: String? = null
-        var state:Int? = -1//0 = GET, 1 = POST
+        var state:Int? = -1//0 = GET_makeroomlist, 1 = GET_joinroomlist, 2 = POST
 
         override fun doInBackground(vararg params: String): String? {
             var client = OkHttpClient()
@@ -110,14 +114,17 @@ class RoomChoose : AppCompatActivity() {
             if(state == 0){
                 response = Okhttp(applicationContext).GET(client,url)
             }
-            else if(state ==1) {
-                qrname = params[2]
-                var endtime = params[3]
-                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_makeroom(qrname, endtime))
-
+            else if(state == 1){
+                response=Okhttp(applicationContext).GET(client,url)
             }
             else{
-                response = Okhttp(applicationContext).DELETE(client,url)
+                qrname = params[2]
+                var codenum = params[3]
+                var endtime = params[4]
+
+                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_makeroom(qrname,codenum, endtime))
+
+                Log.d("checktest",CreateJson().json_makeroom(qrname,codenum, endtime))
             }
             return response
         }
@@ -133,15 +140,35 @@ class RoomChoose : AppCompatActivity() {
             } else {
                 var json = JSONObject(result)
 
-                if (json.getInt("message") == 1) {
-                    var data = json.getJSONArray("data")
-                    for (i in 0 until data.length()) {
-                        var room: JSONObject = data[i] as JSONObject
-                        var adapter = myRoom_Fragment.getFragmentAdapter()
-                        adapter.add(roomlist_dataclass(room.getString("qrname"), room.getString("codenum")))
+                if(state == 0 || state == 1) {
+                    if (json.getInt("message") == 1) {
+                        var roomlist = ArrayList<roomlist_dataclass>()
+                        var data = json.getJSONArray("data")
+                        for (i in 0 until data.length()) {
+                            var room: JSONObject = data[i] as JSONObject
+                            roomlist.add(roomlist_dataclass(room.getString("qrname"), room.getString("codenum")))
+                        }
+                        if (state == 0)
+                            makeroom_list = roomlist
+                        else if (state == 1)
+                            joinroom_list = roomlist
+                        myRoom_Fragment.adapter!!.listinit(makeroom_list)
+                        joinRoom_Fragment.adapter!!.listinit(joinroom_list)
                     }
-                } else {
-                    Toast.makeText(applicationContext, "일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show()
+                    else {
+                        Toast.makeText(applicationContext, "일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else { // post state == 2
+                    var adapter = myRoom_Fragment.adapter
+                    var message = json.getInt("message")
+                    if(message == 0)
+                        Toast.makeText(applicationContext,"방 생성 실패",Toast.LENGTH_SHORT).show()
+                    else if (message == 1){
+                        adapter!!.add(room!!)
+                    }
+                    else if(message == 2)
+                        Toast.makeText(applicationContext,"중복된 참가코드",Toast.LENGTH_SHORT).show()
                 }
             }
         }

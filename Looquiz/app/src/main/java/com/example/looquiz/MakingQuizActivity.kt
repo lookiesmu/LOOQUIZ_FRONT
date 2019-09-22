@@ -36,12 +36,12 @@ class MakingQuizActivity : AppCompatActivity() {
         makingquiz_btn.setOnClickListener{
             var radioBtn = findViewById<RadioButton>(radioGroup.checkedRadioButtonId)
             //Log.d("radioBtn>> ", ""+radioBtn.text.toString().toInt())
-            /*Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", "광화문",
+            Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", "광화문",
                 makingquiz_inputquestion.text.toString(), makingquiz_inputans1.text.toString(), makingquiz_inputans2.text.toString(),
                 makingquiz_inputans3.text.toString(), makingquiz_inputans4.text.toString(), makingquiz_inputans5.text.toString(),
                 makingquiz_inputhint.text.toString(), "서울", "3", makingquiz_inputcontent.text.toString()
-                )*/
-            Asynctask().execute("1", getString(R.string.delete_quiz), "4")
+                )
+
             //Asynctask().execute("2", getString(R.string.get_badge), "경복궁")
         }
 /*
@@ -116,6 +116,7 @@ class MakingQuizActivity : AppCompatActivity() {
                 if (state == 0) { //GET_idcheck
                     if (json.getInt("message").equals(1)) {
                         Toast.makeText(applicationContext, "퀴즈가 생성되었습니다.", Toast.LENGTH_SHORT).show()
+                        finish()
                     } else {
                         Toast.makeText(applicationContext, "퀴즈 생성에 실패했습니다.\n다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
                     }

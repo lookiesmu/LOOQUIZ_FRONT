@@ -22,10 +22,11 @@ class MyPageActivity : AppCompatActivity() {
 
         mypage_icon.setOnClickListener {
             Asynctask().execute("0",getString(R.string.badge))
+            startActivity(Intent(this,BadgeList::class.java))
         }
         mypage_btnquizrate.setOnClickListener {
             Asynctask().execute("1",getString(R.string.citylist))
-            startActivity(Intent(this,RateMapActivity::class.java))
+            startActivity(Intent(this,RegionList::class.java))
         }
 
         mypage_btncorplist.setOnClickListener {
@@ -60,7 +61,7 @@ class MyPageActivity : AppCompatActivity() {
 
             else if(state == 2) {
                 var bid = params[2]
-                url = url+"${bid}"
+                url += "${bid}"
                 response = Okhttp(applicationContext).GET(client, url)
             }
 
@@ -83,7 +84,7 @@ class MyPageActivity : AppCompatActivity() {
                     var jsonArray = json.getJSONArray("data")
                     var corpary = Array<String>(jsonArray.length(),{""})
                     for(i in 0 until jsonArray.length()){
-                        corpary?.set(i,jsonArray.get(i).toString())
+                        corpary[i] = jsonArray.get(i).toString()
                     }
                     corplist = corpary
                 }

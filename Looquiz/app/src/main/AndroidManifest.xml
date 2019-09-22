@@ -42,6 +42,8 @@
         </activity>
         <activity android:name=".MyPageActivity">
         </activity>
+        <activity android:name=".MyRoomActivity">
+        </activity>
         <activity android:name=".FindPWActivity">
         </activity>
         <activity android:name=".FindIDActivity">
@@ -54,6 +56,8 @@
         </activity>
         <activity android:name=".AdviceActivity">
         </activity>
+        <activity android:name=".JoinRoomActivity">
+        </activity>
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -61,7 +65,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RoomChoose"/>
+        <activity android:name=".RoomChoose">
+        </activity>
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name"

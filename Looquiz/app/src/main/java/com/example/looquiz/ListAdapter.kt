@@ -13,10 +13,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import okhttp3.OkHttpClient
-import org.json.JSONObject
 
-class ListAdapter(val context: Context,val list: ArrayList<roomlist_dataclass>)
+class ListAdapter(val context: Context, var list: ArrayList<roomlist_dataclass>)
     : RecyclerView.Adapter<ListAdapter.Holder>() {
+
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_item,p0,false)
@@ -41,9 +41,9 @@ class ListAdapter(val context: Context,val list: ArrayList<roomlist_dataclass>)
             roomCodenum.text = room.roomcodenum
             roomlist_view.setOnClickListener{
                 var intent = Intent(context,MyRoomActivity::class.java)
-
                 intent.putExtra("codenum",room.roomcodenum)
                 intent.putExtra("title",room.roomtitle)
+                context.startActivity(intent)
 
             }
             roomout.setOnClickListener {
@@ -69,7 +69,7 @@ class ListAdapter(val context: Context,val list: ArrayList<roomlist_dataclass>)
             var codenum = params[1]
 
             url = url + "${codenum}"
-
+            Log.d("checktest",url)
             response = Okhttp(context).DELETE(client,url)
 
             return response
@@ -84,5 +84,9 @@ class ListAdapter(val context: Context,val list: ArrayList<roomlist_dataclass>)
                 Toast.makeText(context, "방 나가기", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    fun listinit(roomlist : ArrayList<roomlist_dataclass>){
+        list = roomlist
+        notifyDataSetChanged()
     }
 }
