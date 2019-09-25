@@ -115,6 +115,7 @@ class MyRoomActivity : AppCompatActivity() {
                             memary?.set(i,member.getString("uname"))
                         }
                         memberlist = memary
+                        Log.d("check",memberlist.toString())
                     }
                     else {
                         Toast.makeText(applicationContext,"일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show()

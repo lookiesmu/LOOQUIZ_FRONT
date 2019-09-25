@@ -15,23 +15,26 @@ class MyPageActivity : AppCompatActivity() {
 
     var corplist: Array<String>? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_mypage)
+        onPause()
+        Log.d("lifecycle","oncreate")
 
+        Asynctask().execute("1",getString(R.string.corplist))
 
         mypage_icon.setOnClickListener {
             Asynctask().execute("0",getString(R.string.badge))
             startActivity(Intent(this,BadgeList::class.java))
         }
         mypage_btnquizrate.setOnClickListener {
-            Asynctask().execute("1",getString(R.string.citylist))
             startActivity(Intent(this,RegionList::class.java))
         }
 
         mypage_btncorplist.setOnClickListener {
 
-            Asynctask().execute("2",getString(R.string.corplist))
+            //Asynctask().execute("1",getString(R.string.corplist))
             var builder = AlertDialog.Builder(this)
             builder.setTitle(" 제휴 리스트 ")
 
@@ -42,8 +45,15 @@ class MyPageActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        //onStart()
+        Log.d("lifecycle","onresume")
+
+    }
+
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state = -1 //GET_badge = 0 , GET_citylist = 1 ,GET_corplist = 2
+        var state = -1 //GET_badge = 0  ,GET_corplist = 1
         var response : String? = null
 
         override fun doInBackground(vararg params: String): String? {
@@ -55,13 +65,8 @@ class MyPageActivity : AppCompatActivity() {
                 response = Okhttp(applicationContext).GET(client,url)
 
             }
-            else if(state == 1) {
-                response = Okhttp(applicationContext).GET(client, url)
-            }
 
-            else if(state == 2) {
-                var bid = params[2]
-                url += "${bid}"
+            else {
                 response = Okhttp(applicationContext).GET(client, url)
             }
 
@@ -80,7 +85,7 @@ class MyPageActivity : AppCompatActivity() {
             }
             else{
                 var json = JSONObject(result)
-                if (state == 2){
+                if (state == 1){
                     var jsonArray = json.getJSONArray("data")
                     var corpary = Array<String>(jsonArray.length(),{""})
                     for(i in 0 until jsonArray.length()){

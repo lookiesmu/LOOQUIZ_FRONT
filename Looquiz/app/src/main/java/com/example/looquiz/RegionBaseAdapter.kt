@@ -3,7 +3,9 @@ package com.example.looquiz
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.CardView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +16,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_region.view.*
 
 
-class RegionBaseAdapter(val list:List<String?>) : BaseAdapter (){
+class RegionBaseAdapter(val context: Context,val list:List<String?>) : BaseAdapter (){
 
     override fun getView(position:Int, convertView: View?, parent: ViewGroup?):View{
 
@@ -39,6 +41,9 @@ class RegionBaseAdapter(val list:List<String?>) : BaseAdapter (){
 
             //클릭하면 이미지뷰가 변하는 코드
             viewGroup.imageView.setImageResource(R.drawable.suwon)
+            var intent = Intent(context,QuizRateActivity::class.java)
+            intent.putExtra("cityname",list[position])
+            context.startActivity(intent)
         }
 
         return view

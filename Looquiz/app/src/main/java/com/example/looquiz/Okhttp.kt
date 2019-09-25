@@ -21,8 +21,9 @@ class Okhttp(var context: Context){
                 .post(RequestBody.create(MediaType.parse("application/json"), jsonbody!!))
 
             //header에 넣기
-            if(!token.isNullOrEmpty())
-                builder.header("Authorization",token)
+            if(!token.isNullOrEmpty()) {
+                builder.header("Authorization", token)
+            }
 
             var request = builder.build()
             response = client!!.newCall(request).execute()
@@ -58,7 +59,7 @@ class Okhttp(var context: Context){
             }
 
             var request = builder.build()
-            response = clinet!!.newCall(request).execute()
+            response = clinet.newCall(request).execute()
 
             return response.body()?.string()!!
         }catch (e: IOException){

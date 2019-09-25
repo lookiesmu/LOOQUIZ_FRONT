@@ -18,15 +18,15 @@ class RegionList: AppCompatActivity(), BigRegionAdapter.ClickListener {
         Toast.makeText(this, "Item clicked $item", Toast.LENGTH_SHORT).show()
 
         when (item){
-            "수도권" -> grid_view.adapter = RegionBaseAdapter(listOf("서울", "인천", "수원", "시흥", "양평", "파주", "평택"))
-            "충북" -> grid_view.adapter = RegionBaseAdapter(listOf("청주", "충주", "제천"))
-            "충남" -> grid_view.adapter = RegionBaseAdapter(listOf("천안", "공주", "논산", "당진", "서산", "보령"))
-            "전북" -> grid_view.adapter = RegionBaseAdapter(listOf("전주", "군산", "남원", "정읍", "김제", "익산"))
-            "전남" -> grid_view.adapter = RegionBaseAdapter(listOf("광주", "여수", "순천", "목포", "나주", "광양"))
-            "경북" -> grid_view.adapter = RegionBaseAdapter(listOf("대구", "경주", "안동", "상주", "구미", "문경", "포항"))
-            "경남" -> grid_view.adapter = RegionBaseAdapter(listOf("부산", "밀양", "김해", "창원", "통영", "거제", "진주"))
-            "강원" -> grid_view.adapter = RegionBaseAdapter(listOf("춘천", "원주", "속초", "강릉", "동해", "태백"))
-            "제주" -> grid_view.adapter = RegionBaseAdapter(listOf("한라산", "서귀포", "우도"))
+            "수도권" -> grid_view.adapter = RegionBaseAdapter(this,listOf("서울", "인천", "수원", "시흥", "양평", "파주", "평택"))
+            "충북" -> grid_view.adapter = RegionBaseAdapter(this,listOf("청주", "충주", "제천"))
+            "충남" -> grid_view.adapter = RegionBaseAdapter(this,listOf("천안", "공주", "논산", "당진", "서산", "보령"))
+            "전북" -> grid_view.adapter = RegionBaseAdapter(this,listOf("전주", "군산", "남원", "정읍", "김제", "익산"))
+            "전남" -> grid_view.adapter = RegionBaseAdapter(this,listOf("광주", "여수", "순천", "목포", "나주", "광양"))
+            "경북" -> grid_view.adapter = RegionBaseAdapter(this,listOf("대구", "경주", "안동", "상주", "구미", "문경", "포항"))
+            "경남" -> grid_view.adapter = RegionBaseAdapter(this,listOf("부산", "밀양", "김해", "창원", "통영", "거제", "진주"))
+            "강원" -> grid_view.adapter = RegionBaseAdapter(this,listOf("춘천", "원주", "속초", "강릉", "동해", "태백"))
+            "제주" -> grid_view.adapter = RegionBaseAdapter(this,listOf("한라산", "서귀포", "우도"))
         }
     }
 
@@ -34,7 +34,7 @@ class RegionList: AppCompatActivity(), BigRegionAdapter.ClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_region)
 
-        val adapter = RegionBaseAdapter(listOf("서울", "인천", "수원", "시흥", "양평", "파주", "평택"))
+        val adapter = RegionBaseAdapter(this,listOf("서울", "인천", "수원", "시흥", "양평", "파주", "평택"))
 
         // 도별 어댑터
         val posts = arrayListOf<String>("수도권","충북","충남","전북","전남","경북","경남","강원","제주")
