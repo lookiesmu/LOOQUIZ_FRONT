@@ -27,7 +27,6 @@ class SignInActivity : AppCompatActivity() {
                 signin_inputID.text.toString(),
                 signin_inputPW.text.toString()
             )
-
         }
 
         signin_btnsignup.setOnClickListener {

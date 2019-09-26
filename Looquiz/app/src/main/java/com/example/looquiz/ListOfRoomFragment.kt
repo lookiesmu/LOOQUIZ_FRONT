@@ -12,13 +12,13 @@ import kotlinx.android.synthetic.main.list_fragment.*
 import kotlinx.android.synthetic.main.room_choose.*
 
 class ListOfRoomFragment() : Fragment() {
-    lateinit var adapter : ListAdapter
+    var adapter : ListAdapter? = null
     val mNicolasCageMovies = ArrayList<roomlist_dataclass>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-
+        adapter = ListAdapter(this.context!!,mNicolasCageMovies)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -28,7 +28,6 @@ class ListOfRoomFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ListAdapter(this.context!!,mNicolasCageMovies)
         list_recycler_view.adapter = adapter
         list_recycler_view.layoutManager = LinearLayoutManager(activity)
     }
@@ -37,7 +36,7 @@ class ListOfRoomFragment() : Fragment() {
         fun newInstance(): ListOfRoomFragment = ListOfRoomFragment()
     }
 
-    fun getFragmentAdapter():ListAdapter{
+    fun getFragmentAdapter():ListAdapter?{
         return adapter
     }
 }

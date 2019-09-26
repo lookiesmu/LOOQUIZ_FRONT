@@ -33,9 +33,8 @@ class QuizAdapter(val context : Context, val cityList:ArrayList<QuizRate>):
 
         fun bind(quizrate:QuizRate,context: Context){
 
-            if(quizrate.image != ""){
-                val resourceId=context.resources.getIdentifier(quizrate.image,"drawable",context.packageName)
-                CityImage?.setImageResource(resourceId)
+            if(!quizrate.image.toString().isNullOrEmpty()){
+                CityImage?.setImageResource(quizrate.image!!)
             }else{
                 CityImage?.setImageResource(R.mipmap.ic_launcher)
             }
