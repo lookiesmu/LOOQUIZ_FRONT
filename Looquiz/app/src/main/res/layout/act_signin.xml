@@ -6,35 +6,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
         android:paddingBottom="50dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="50dp"
-        tools:context=".SignInActivity">
+        tools:context=".SignInActivity" android:gravity="center">
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:layout_marginBottom="40dp"
+            app:srcCompat="@drawable/history_logo_1x"
+            android:id="@+id/imageView4"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="15dp">
+            android:layout_height="wrap_content" android:paddingBottom="15dp" android:gravity="center_horizontal">
         <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:background="@drawable/statelist_drawable"
+                android:padding="10dp"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/signin_inputID" android:hint="ID" android:layout_marginLeft="5dp"
+                android:textSize="18dp"
+                android:id="@+id/signin_inputID" android:hint="ID"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="15dp">
+            android:paddingBottom="15dp" android:gravity="center_horizontal">
         <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:background="@drawable/statelist_drawable"
+                android:padding="10dp"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/signin_inputPW" android:hint="Password" android:layout_marginLeft="5dp"
+                android:textSize="18dp"
+                android:id="@+id/signin_inputPW" android:hint="Password"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
     </LinearLayout>
     <LinearLayout
@@ -55,7 +66,7 @@
         <CheckBox
                 android:text="자동 로그인"
                 android:layout_gravity="right"
-
+                android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/signin_checkbox"/>
@@ -64,18 +75,19 @@
     </LinearLayout>
     <Button
             android:text="로그인"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
             android:id="@+id/signin_btnsignin"
-            android:paddingBottom="15dp"/>
+            android:background="@drawable/button_drawable"
+            android:textColor="#FFFFFF"/>
 
     <TextView
             android:text="회원가입"
             android:padding="10dp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:id="@+id/signin_btnsignup"/>
 
 
