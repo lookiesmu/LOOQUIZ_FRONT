@@ -7,38 +7,35 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="server_url">https://eabc7cbc.ngrok.io/Lookie</string>
-    <string name="signup_checkID">https://eabc7cbc.ngrok.io/Lookie/checkID?uid=</string>
-    <string name="checkpw">https://eabc7cbc.ngrok.io/Lookie/checkPW</string>
-    <string name="signup">https://eabc7cbc.ngrok.io/Lookie/signUp</string>
-    <string name="signin">https://eabc7cbc.ngrok.io/Lookie/signIn</string>
-    <string name="logout">https://eabc7cbc.ngrok.io/Lookie/logOut</string>
-    <string name="findID">https://eabc7cbc.ngrok.io/Lookie/findID?uname=</string>
-    <string name="findPW">https://eabc7cbc.ngrok.io/Lookie/checkID?uid=</string>
-    <string name="edit_pw">https://eabc7cbc.ngrok.io/Lookie/updateMember</string>
-    <string name="delete_mem">https://eabc7cbc.ngrok.io/Lookie/deleteMem</string>
-    <string name="create_quiz">https://eabc7cbc.ngrok.io/Lookie/createQ</string>
-    <string name="delete_quiz">https://eabc7cbc.ngrok.io/Lookie/deleteQ?qid=</string>
-    <string name="scuccesrate">https://eabc7cbc.ngrok.io/Lookie/successRate?cityname=</string>
-    <string name="edit_quiz">https://eabc7cbc.ngrok.io/Lookie/editingQuiz</string>
-    <string name="search_mem">https://eabc7cbc.ngrok.io/Lookie/searchMem</string>
-    <string name="enter_room">https://eabc7cbc.ngrok.io/Lookie/enterRoom</string>
-    <string name="delete_room">https://eabc7cbc.ngrok.io/Lookie/deleteRoom?codenum=</string>
-    <string name="corplist">https://eabc7cbc.ngrok.io/Lookie/storeList</string>
-    <string name="badge">https://eabc7cbc.ngrok.io/Lookie/badge</string>
-    <string name="cityname">https://eabc7cbc.ngrok.io/Lookie/rnameList?cityname=</string>
-    <string name="search_makeroom">https://eabc7cbc.ngrok.io/Lookie/makeRoomSearch</string>
-    <string name="participate_room">https://eabc7cbc.ngrok.io/Lookie/participateRoom</string>
-    <string name="region_quizlist">https://eabc7cbc.ngrok.io/Lookie/regionQuizList</string>
-    <string name="make_room">https://eabc7cbc.ngrok.io/Lookie/makeRoom</string>
-    <string name="room_quizlist">https://eabc7cbc.ngrok.io/Lookie/roomQuizList</string>
-    <string name="before_quiz">https://eabc7cbc.ngrok.io/Lookie/quizQuestion</string>
-    <string name="after_quiz">https://eabc7cbc.ngrok.io/Lookie/takeQuiz</string>
-    <string name="citylist">https://eabc7cbc.ngrok.io/Lookie/cityList</string>
-    <string name="get_badge">https://eabc7cbc.ngrok.io/Lookie/getUserBadge</string>
-
-
-
+    <string name="server_url">https://d10a421d.ngrok.io/hi_story</string>
+    <string name="signup_checkID">https://d10a421d.ngrok.io/hi_story/checkID?uid=</string>
+    <string name="checkpw">https://d10a421d.ngrok.io/hi_story/checkPW</string>
+    <string name="signup">https://d10a421d.ngrok.io/hi_story/signUp</string>
+    <string name="signin">https://d10a421d.ngrok.io/hi_story/signIn</string>
+    <string name="logout">https://d10a421d.ngrok.io/hi_story/logOut</string>
+    <string name="findID">https://d10a421d.ngrok.io/hi_story/findID?uname=</string>
+    <string name="findPW">https://d10a421d.ngrok.io/hi_story/checkID?uid=</string>
+    <string name="edit_pw">https://d10a421d.ngrok.io/hi_story/updateMember</string>
+    <string name="delete_mem">https://d10a421d.ngrok.io/hi_story/deleteMem</string>
+    <string name="create_quiz">https://d10a421d.ngrok.io/hi_story/createQ</string>
+    <string name="delete_quiz">https://d10a421d.ngrok.io/hi_story/deleteQ?qid=</string>
+    <string name="scuccesrate">https://d10a421d.ngrok.io/hi_story/successRate?cityname=</string>
+    <string name="edit_quiz">https://d10a421d.ngrok.io/hi_story/editingQuiz</string>
+    <string name="search_mem">https://d10a421d.ngrok.io/hi_story/searchMem</string>
+    <string name="enter_room">https://d10a421d.ngrok.io/hi_story/enterRoom</string>
+    <string name="delete_room">https://d10a421d.ngrok.io/hi_story/deleteRoom</string>
+    <string name="corplist">https://d10a421d.ngrok.io/hi_story/corpList?bid=</string>
+    <string name="badge">https://d10a421d.ngrok.io/hi_story/badge</string>
+    <string name="cityname">https://d10a421d.ngrok.io/hi_story/rnameList?cityname=</string>
+    <string name="search_makeroom">https://d10a421d.ngrok.io/hi_story/makeRoomSearch</string>
+    <string name="participate_room">https://d10a421d.ngrok.io/hi_story/participateRoom</string>
+    <string name="region_quizlist">https://d10a421d.ngrok.io/hi_story/regionQuizList</string>
+    <string name="make_room">https://d10a421d.ngrok.io/hi_story/makeRoom</string>
+    <string name="room_quizlist">https://d10a421d.ngrok.io/hi_story/roomQuizList</string>
+    <string name="before_quiz">https://d10a421d.ngrok.io/hi_story/quizQuestion</string>
+    <string name="after_quiz">https://d10a421d.ngrok.io/hi_story/takeQuiz</string>
+    <string name="citylist">https://d10a421d.ngrok.io/hi_story/cityList</string>
+    <string name="get_badge">https://d10a421d.ngrok.io/hi_story/getUserBadge</string>
 
 
     <string name="menu_seoul">서울</string>

@@ -12,20 +12,11 @@
                 android:id="@+id/region_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="광화문"
                 android:textSize="30dp"
                 android:textColor="#000000" android:layout_weight="1" android:layout_gravity="left"/>
         <View
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" android:layout_weight="7"/>
-        <Button
-                android:id="@+id/btn_report"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="right"
-                android:text="오류 신고"
-                android:textColor="@android:color/holo_red_dark" android:background="@android:color/transparent"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
