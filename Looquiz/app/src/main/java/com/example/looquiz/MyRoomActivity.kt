@@ -30,6 +30,9 @@ class MyRoomActivity : AppCompatActivity() {
 
         Asynctask().execute("0",getString(R.string.room_quizlist),myroom_roomcodenum)
 
+        Log.d("check",myroom_roomcodenum)
+
+
         myroom_title.text = myroom_roomtitle
         myroom_codenum.text = myroom_roomcodenum
         myroom_rname.text = rname
@@ -46,7 +49,7 @@ class MyRoomActivity : AppCompatActivity() {
         //멤버조회
         myroom_member.setOnClickListener {
 
-            Asynctask().execute(getString(R.string.search_mem),myroom_roomcodenum)
+            Asynctask().execute("1",getString(R.string.search_mem),myroom_roomcodenum)
             var builder = AlertDialog.Builder(this)
             builder.setTitle(myroom_roomtitle.toString())
 

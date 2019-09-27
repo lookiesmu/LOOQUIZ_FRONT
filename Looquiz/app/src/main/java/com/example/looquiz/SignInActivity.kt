@@ -9,17 +9,19 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.act_signin.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
+import kotlin.math.sign
 
 class SignInActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_signin)
 
-        signin_checkbox.setOnClickListener { SharedClass(applicationContext).setAuto(signin_checkbox.isChecked) }
+        /*signin_checkbox.setOnClickListener { SharedClass(applicationContext).setAuto(signin_checkbox.isChecked) }
         if(SharedClass(applicationContext).getAuto() && !SharedClass(applicationContext).getToken().isNullOrEmpty())
             startActivity(Intent(applicationContext,MainActivity::class.java))
-
+*/
 
         signin_btnsignin.setOnClickListener {
             Asynctask().execute(
@@ -71,7 +73,11 @@ class SignInActivity : AppCompatActivity() {
                     var data = json.getJSONObject("data")
                     var uid  = data.getString("uid")
                     Toast.makeText(applicationContext,"${uid}님 환영합니다", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(applicationContext,MainActivity::class.java))
+                    uid = signin_inputID.text.toString()
+
+                    var intent = Intent(applicationContext,MainActivity::class.java)
+                    intent.putExtra("uid",uid)
+                    startActivity(intent)
                     finish()
                 }
                 else {

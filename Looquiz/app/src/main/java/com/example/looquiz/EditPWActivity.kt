@@ -6,7 +6,10 @@ import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.act_edit_pw.*
 import kotlinx.android.synthetic.main.dia_checkpw.*
@@ -21,10 +24,32 @@ class EditPWActivity : AppCompatActivity() {
         setContentView(R.layout.act_edit_pw)
 
 
+        var checkPWBuilder = AlertDialog.Builder(this)
+        var checkPWBuilder2:AlertDialog = checkPWBuilder.create()
+        var checkPWView = layoutInflater.inflate(R.layout.dia_checkpw, null)
+        checkPWBuilder.setView(checkPWView)
+        val checkpw_edittext = checkPWView.findViewById<EditText>(R.id.checkpw_inputpw)
+
+        var checkPWListener = object :DialogInterface.OnClickListener{
+
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                if(!checkpw_edittext.text.toString().isNullOrEmpty()) {
+                    Asynctask().execute("0", getString(R.string.checkpw), checkpw_edittext.text.toString())
+                }
+                else{
+                    Toast.makeText(applicationContext,"기존 비밀번호를 입력해주세요",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        checkPWBuilder.setPositiveButton("확인", checkPWListener)
+        checkPWBuilder.setNegativeButton("닫기", null)
+
+        checkPWBuilder.show()
+
         btn_editPW.setOnClickListener {
             if (editpw_inputpw.text.toString() == editpw_inputpw2.text.toString()){
                 Asynctask().execute("1",getString(R.string.edit_pw)
-                    ,editpw_inputpw.text.toString(),editpw_inputpw2.text.toString())
+                    ,checkpw_edittext.text.toString(),editpw_inputpw2.text.toString())
                 Toast.makeText(applicationContext," 비밀번호가 수정되었습니다 ",Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(applicationContext," 비밀번호가 일치하지 않습니다 ",Toast.LENGTH_SHORT).show()
@@ -34,21 +59,6 @@ class EditPWActivity : AppCompatActivity() {
             Asynctask().execute("2",getString(R.string.delete_mem),pw)
             Toast.makeText(applicationContext," 회원 탈퇴 되었습니다 ",Toast.LENGTH_SHORT).show()
         }
-        var checkPWBuilder = AlertDialog.Builder(this)
-        var checkPWBuilder2:AlertDialog = checkPWBuilder.create()
-        var checkPWView = layoutInflater.inflate(R.layout.dia_checkpw, null)
-        checkPWBuilder.setView(checkPWView)
-
-        var checkPWListener = object :DialogInterface.OnClickListener{
-
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                Asynctask().execute("0",getString(R.string.checkpw),checkpw_inputpw.text.toString())
-            }
-        }
-        checkPWBuilder.setPositiveButton("확인", checkPWListener)
-        checkPWBuilder.setNegativeButton("닫기", null)
-
-        checkPWBuilder.show()
     }
     inner class Asynctask: AsyncTask<String, Void, String>() {
         var state = -1 //POST_ckeckPW = 0 , PUT_editPW = 1 ,POST_deletemem = 2
@@ -60,8 +70,8 @@ class EditPWActivity : AppCompatActivity() {
             var url = params[1]
             pw = params[2]
             if(state == 0){
-
                 response = Okhttp(applicationContext).POST(client,url,CreateJson().json_checkpw(pw))
+                Log.d("check",url)
 
             }
             else if(state == 1) {
@@ -99,6 +109,8 @@ class EditPWActivity : AppCompatActivity() {
                 else if(state == 1){
                     if (json.getInt("message") == 1) {
                         Toast.makeText(applicationContext,"새 비밀번호가 저장되었습니다", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(applicationContext,MainActivity::class.java))
+                        finish()
                     }
                     else{
                         Toast.makeText(applicationContext,"비밀번호 수정에 실패하였습니다", Toast.LENGTH_SHORT).show()

@@ -18,7 +18,12 @@ import org.json.JSONObject
 
 class BadgeList : AppCompatActivity() {
 
-    var cityimg = mapOf<String,Int>(Pair("경복궁",R.drawable.gyeong))
+    var cityimg = mapOf<String,Int>(Pair("경복궁",R.drawable.p1)
+        , Pair("창덕궁",R.drawable.p2), Pair("덕수궁",R.drawable.p3)
+        , Pair("불국사",R.drawable.p4), Pair("화엄사",R.drawable.p5)
+        , Pair("한라산",R.drawable.p6), Pair("북한산",R.drawable.p7)
+        , Pair("다보탑",R.drawable.p8), Pair("석가탑",R.drawable.p9)
+        , Pair("석굴암",R.drawable.p10))
 
     class BadgeItem (private var region: String, private var image: Int) {
         fun getRegion(): String { return region }

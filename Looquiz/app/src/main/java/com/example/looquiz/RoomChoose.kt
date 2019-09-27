@@ -44,6 +44,8 @@ class RoomChoose : AppCompatActivity() {
         setContentView(R.layout.room_choose)
 
         Asynctask().execute("0",getString(R.string.search_makeroom))
+        //Asynctask().execute("1",getString(R.string.participate_room))
+
 
         supportActionBar?.hide()
 
@@ -149,11 +151,9 @@ class RoomChoose : AppCompatActivity() {
                             roomlist.add(roomlist_dataclass(room.getString("qrname"), room.getString("codenum")))
                         }
                         if (state == 0)
-                            makeroom_list = roomlist
+                            myRoom_Fragment.adapter!!.listinit(roomlist)
                         else if (state == 1)
-                            joinroom_list = roomlist
-                        myRoom_Fragment.adapter!!.listinit(makeroom_list)
-                        joinRoom_Fragment.adapter!!.listinit(joinroom_list)
+                            joinRoom_Fragment.adapter!!.listinit(roomlist)
                     }
                     else {
                         Toast.makeText(applicationContext, "일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show()

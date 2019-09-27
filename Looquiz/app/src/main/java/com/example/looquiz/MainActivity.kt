@@ -21,6 +21,7 @@ import android.view.SearchEvent
 import android.view.View
 import android.widget.Button
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -67,9 +68,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //로그아웃
         var navigationView = findViewById<NavigationView>(R.id.nav_view)
         var view:View = navigationView.getHeaderView(0)
+        var userid=view.findViewById<TextView>(R.id.uid)
+
+        var uid:String? = null
+        uid = intent.getStringExtra("uid")
+        userid.text = "${uid}" + " 님"
+
         var btn_logout = view.findViewById<Button>(R.id.btn_logout)
         btn_logout.setOnClickListener {
-            Toast.makeText(this, "로그아웃 버튼 누름", Toast.LENGTH_LONG).show()
+            Asynctask().execute("2",getString(R.string.logout))
+            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this,SignInActivity::class.java))
+            finish()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -289,7 +299,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state = -1 // GET_regionList = 0(전체도시 리스트 조회)  POST_enterRoom = 1(방 참여)
+        var state = -1 // GET_regionList = 0(전체도시 리스트 조회)  POST_enterRoom = 1(방 참여) GET_logout=2
         var response: String? = null
 
         override fun doInBackground(vararg params: String): String? {
@@ -308,6 +318,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } else if(state == 1){
                 var codenum = params[2]
                 response = Okhttp(applicationContext).POST(client, url, CreateJson().json_enterroom(codenum))
+            }
+            else{
+                response = Okhttp(applicationContext).GET(client, url)
+                Log.d("check",url)
             }
             Log.d("통신 결과 response >> ", response)
             return response
@@ -345,10 +359,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 } else if(state == 1){
                     if (json.getInt("message") == 1) {
                         Toast.makeText(applicationContext, "성공적으로 가입되었습니다.", Toast.LENGTH_LONG).show()
-                        startActivity(Intent(applicationContext, MyPageActivity::class.java))
+                        startActivity(Intent(applicationContext, RoomChoose::class.java))
                     } else { //message == 0
                         Toast.makeText(applicationContext, "참가코드를 올바르게 입력해주세요", Toast.LENGTH_LONG).show()
                     }
+                }
+                else{
+
                 }
             }
         }
