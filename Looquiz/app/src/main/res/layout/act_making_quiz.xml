@@ -13,15 +13,20 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
-        <Spinner
-                android:id="@+id/input_region"
+        <!--<Spinner
+                android:id="@+id/makingquiz_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
-                android:entries="@array/quiz_region"
                 android:padding="2dp"
-                android:spinnerMode="dropdown"/>
+                android:spinnerMode="dropdown"/>-->
+        <EditText
+                android:id="@+id/makingquiz_inputdname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:hint="지역을 입력해주세요"/>
         <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
