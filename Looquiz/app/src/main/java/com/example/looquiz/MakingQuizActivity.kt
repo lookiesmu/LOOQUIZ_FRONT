@@ -17,16 +17,17 @@ class MakingQuizActivity : AppCompatActivity() {
     //var dnameList = mutableListOf<String>()
     var dnameList = arrayListOf<String>()
     //var selectedDname = ""
+    var myroom_rname:String? = null
+    var myroom_codenum: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_making_quiz)
-
+/*
         Asynctask().execute("1", getString(R.string.region_quizlist), "경복궁")
-
         var spinnerAdapter1 = ArrayAdapter(this, android.R.layout.simple_list_item_1, dnameList)
         spinnerAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        /*makingquiz_spinner.adapter = spinnerAdapter1
+        makingquiz_spinner.adapter = spinnerAdapter1
         makingquiz_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Log.d("position 확인", ""+position)
@@ -39,18 +40,38 @@ class MakingQuizActivity : AppCompatActivity() {
             }
         }
 */
-
+        if(intent.hasExtra("roomcodenum")){
+            myroom_codenum = intent.getStringExtra("roomcodenum")
+            Log.d("방 번호 확인1 ", ""+myroom_codenum)
+        }
+        /*if(intent.hasExtra("rname")){
+            myroom_rname = intent.getStringExtra("rname")
+            Log.d("방 지역 확인1", ""+myroom_rname)
+        }
+        myroom_rname = intent.getStringExtra("rname")
+        Log.d("방 지역 확인2", ""+myroom_rname)*/
 
         var radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
 
         makingquiz_btn.setOnClickListener{
             var radio_answer = findViewById<RadioButton>(radioGroup.checkedRadioButtonId)
-
-            Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", makingquiz_inputdname.text.toString(),
-                makingquiz_inputquestion.text.toString(), makingquiz_inputans1.text.toString(), makingquiz_inputans2.text.toString(),
-                makingquiz_inputans3.text.toString(), makingquiz_inputans4.text.toString(), makingquiz_inputans5.text.toString(),
-                makingquiz_inputhint.text.toString(), makingquiz_inputcityname.text.toString(), radio_answer.text.toString(), makingquiz_inputcontent.text.toString()
-            )
+            if(radio_answer == null){
+                Toast.makeText(this, "정답을 체크해주세요", Toast.LENGTH_LONG).show()
+            } else {
+                if(makingquiz_inputquestion.text.toString() == "" || makingquiz_inputans1.text.toString() == "" ||
+                    makingquiz_inputans2.text.toString() == "" || makingquiz_inputans3.text.toString() == "" ||
+                    makingquiz_inputans4.text.toString() == "" || makingquiz_inputans5.text.toString() == "" ||
+                    makingquiz_inputhint.text.toString() == "" || makingquiz_inputcityname.text.toString() == "" ||
+                    makingquiz_inputdname.text.toString() == "" || makingquiz_inputcontent.text.toString() == ""  ){
+                    Toast.makeText(this, "모든 항목을 입력해주세요", Toast.LENGTH_LONG).show()
+                } else{
+                    Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", makingquiz_inputdname.text.toString(),
+                        makingquiz_inputquestion.text.toString(), makingquiz_inputans1.text.toString(), makingquiz_inputans2.text.toString(),
+                        makingquiz_inputans3.text.toString(), makingquiz_inputans4.text.toString(), makingquiz_inputans5.text.toString(),
+                        makingquiz_inputhint.text.toString(), makingquiz_inputcityname.text.toString(), radio_answer.text.toString(),
+                        myroom_codenum, makingquiz_inputcontent.text.toString())
+                }
+            }
 
         }
 
@@ -79,10 +100,11 @@ class MakingQuizActivity : AppCompatActivity() {
                 var hcontent = params[10]
                 var cityname = params[11]
                 var answer = params[12].toInt()
-                var solution = params[13]
+                var roomcodenum = params[13]
+                var solution = params[14]
                 response = Okhttp(applicationContext).POST(client, url,
                     CreateJson().json_createquiz(rname, dname, qname, qcontent1, qcontent2, qcontent3,
-                        qcontent4, qcontent5, hcontent, cityname, answer, solution))
+                        qcontent4, qcontent5, hcontent, cityname, answer, roomcodenum, solution))
 
             } else if( state == 1){
                 Log.d("1 param[1] 확인", ""+params[1])
