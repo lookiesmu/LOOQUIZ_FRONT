@@ -22,11 +22,19 @@
                 android:padding="2dp"
                 android:spinnerMode="dropdown"/>-->
         <EditText
+                android:id="@+id/makingquiz_inputcityname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:textSize="10dp"
+                android:hint="도시를 입력해주세요 예)서울"/>
+        <EditText
                 android:id="@+id/makingquiz_inputdname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:hint="지역을 입력해주세요"/>
+                android:textSize="10dp"
+                android:hint="지역을 입력해주세요 예)광화문"/>
         <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"

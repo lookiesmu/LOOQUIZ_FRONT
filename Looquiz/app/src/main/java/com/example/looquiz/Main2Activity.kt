@@ -136,13 +136,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             else -> return super.onOptionsItemSelected(item)
         }
     }
-    /*
-        fun showRegionList(region: String){
-            regionListBuilder = AlertDialog.Builder(this)
-            regionListBuilder.setTitle(region+" 리스트")
-            Asynctask().execute("0", getString(R.string.cityname), region)
-        }
-    */
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
@@ -225,11 +219,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 Log.d("최종 거리계산 >> ", "${distance}km")
                 //               if(distance<= 70) {
                 when (it) {
-                    marker1 -> {
-                        Log.d("marker1 tag >> ", ""+marker1?.tag)
-                        Log.d("marker1 tag >> ", ""+marker1?.tag.toString().toInt())
-                        makeQuiz(marker1?.title, marker1?.tag.toString().toInt())
-                    }
+                    marker1 -> makeQuiz(marker1?.title, marker1?.tag.toString().toInt())
                     marker2 -> makeQuiz(marker2?.title, marker2?.tag.toString().toInt())
                     marker3 -> makeQuiz(marker3?.title, marker3?.tag.toString().toInt())
                     marker4 -> makeQuiz(marker4?.title, marker4?.tag.toString().toInt())
@@ -297,9 +287,6 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         val endLoc = Location("PointB")
         endLoc.latitude = latlng2.latitude
         endLoc.longitude = latlng2.longitude
-//      Log.d("startLoc >> ", "${startLoc}")
-//      Log.d("endLoc >> ", "${endLoc}")
-
         //var distance = startLoc.distanceTo(endLoc).toDouble()
 //      Log.d("거리계산>>", "${distance}")
         return startLoc.distanceTo(endLoc).toDouble()
@@ -336,13 +323,10 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             setMyLocation(location!!)
             locManager?.removeUpdates(this)
         }
-
         override fun onProviderDisabled(provider: String?) {
         }
-
         override fun onProviderEnabled(provider: String?) {
         }
-
         override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
         }
     }
@@ -350,7 +334,6 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     fun checkBadge(allQuizList: MutableSet<Int>){
         if (allQuizList.size >= 7){
             Asynctask().execute("3", getString(R.string.get_badge), region.text.toString())
-
         }
     }
 
@@ -390,14 +373,13 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
             if(!result[0].equals('{')) { //Json구문이 넘어오지 않을 시 Toast 메세지 출력 후 종료
                 Toast.makeText(applicationContext,"네트워크 연결이 좋지 않습니다", Toast.LENGTH_SHORT).show()
-
                 return
             } else{
                 var json = JSONObject(result)
                 if(state == 0){
                     if(json.getInt("message") == 1){
                         var jsonArray = json.getJSONArray("data")
-                        Log.d("jsonArray >>", ""+jsonArray)
+                        Log.d("state 0 jsonArray >>", ""+jsonArray)
 
                     } else{ //state=0, message = 0
                         Log.d("Fail 0", " 0 네트워크 연결이 좋지 않음")
@@ -447,7 +429,6 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                                     quizBuilder2.dismiss()
                                     makeQuiz(jsonObject.get("dname").toString(), jsonObject.get("qid").toString().toInt())
                                 } else {
-                                    //Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
                                     quizBuilder2.dismiss()
                                     //정답일 경우
                                     if (selectItem+1 == jsonObject.get("answer").toString().toInt()){
@@ -484,6 +465,12 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                         Toast.makeText(applicationContext, "1 네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
                     }
                 } else if(state == 2){
+                    if (json.getInt("message").equals(1)) {
+                        Toast.makeText(applicationContext, "정답 확인.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
+                    }
+                }else if(state == 3){
                     if (json.getInt("message").equals(1)) {
                         Toast.makeText(applicationContext, "뱃지가 생성되었습니다.", Toast.LENGTH_SHORT).show()
                     } else {

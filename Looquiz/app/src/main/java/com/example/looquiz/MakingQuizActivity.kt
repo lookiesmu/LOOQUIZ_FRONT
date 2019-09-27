@@ -1,5 +1,6 @@
 package com.example.looquiz
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -48,10 +49,9 @@ class MakingQuizActivity : AppCompatActivity() {
             Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", makingquiz_inputdname.text.toString(),
                 makingquiz_inputquestion.text.toString(), makingquiz_inputans1.text.toString(), makingquiz_inputans2.text.toString(),
                 makingquiz_inputans3.text.toString(), makingquiz_inputans4.text.toString(), makingquiz_inputans5.text.toString(),
-                makingquiz_inputhint.text.toString(), "서울", radio_answer.text.toString(), makingquiz_inputcontent.text.toString()
+                makingquiz_inputhint.text.toString(), makingquiz_inputcityname.text.toString(), radio_answer.text.toString(), makingquiz_inputcontent.text.toString()
             )
 
-            //Asynctask().execute("2", getString(R.string.get_badge), "경복궁")
         }
 
     }
@@ -90,10 +90,6 @@ class MakingQuizActivity : AppCompatActivity() {
                 var rname = params[2]
                 response = Okhttp(applicationContext).POST(client, url, CreateJson().json_regionquizlist(rname))
 
-            } else if( state ==2){
-                Log.d("2 param[2] 확인", ""+params[2])
-                var rname = params[2]
-                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_getbadge(rname))
             }
 
             Log.d("response>>", ""+response)
@@ -112,6 +108,8 @@ class MakingQuizActivity : AppCompatActivity() {
                 if (state == 0) { //GET_idcheck
                     if (json.getInt("message").equals(1)) {
                         Toast.makeText(applicationContext, "퀴즈가 생성되었습니다.", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(applicationContext, MyRoomActivity::class.java))
+                        finish()
                     } else {
                         Toast.makeText(applicationContext, "퀴즈 생성에 실패했습니다.\n다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
                     }
@@ -122,7 +120,6 @@ class MakingQuizActivity : AppCompatActivity() {
                         for(i in 0 until jsonArray.length()){
                             Log.d("obj", ""+jsonArray.get(i))
                             var jsonObject:JSONObject = jsonArray.getJSONObject(i)
-                            //dnameList.add(i,jsonObject.getString("dname").toString())
                             dnameList.add(jsonObject.getString("dname").toString())
                             //Log.d("dnameList 확인", ""+dnameList[i])
                         }
@@ -130,12 +127,6 @@ class MakingQuizActivity : AppCompatActivity() {
                     } else{ //state=0, message = 0
                         Log.d("Fail 0", " 0 네트워크 연결이 좋지 않음")
                         Toast.makeText(applicationContext, "네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
-                    }
-                } else if(state == 2){
-                    if (json.getInt("message").equals(1)) {
-                        Toast.makeText(applicationContext, "뱃지가 생성되었습니다.", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(applicationContext, "다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
