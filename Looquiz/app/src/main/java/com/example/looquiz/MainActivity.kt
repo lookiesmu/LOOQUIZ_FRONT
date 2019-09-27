@@ -21,6 +21,7 @@ import android.view.SearchEvent
 import android.view.View
 import android.widget.Button
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -67,10 +68,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //로그아웃
         var navigationView = findViewById<NavigationView>(R.id.nav_view)
         var view:View = navigationView.getHeaderView(0)
+        var userid=view.findViewById<TextView>(R.id.uid)
+
+        var uid:String? = null
+        uid = intent.getStringExtra("uid")
+        userid.text = "${uid}" + " 님"
+
         var btn_logout = view.findViewById<Button>(R.id.btn_logout)
         btn_logout.setOnClickListener {
             Asynctask().execute("2",getString(R.string.logout))
-            Toast.makeText(this, "로그아웃 버튼 누름", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this,SignInActivity::class.java))
+            finish()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -350,7 +359,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 } else if(state == 1){
                     if (json.getInt("message") == 1) {
                         Toast.makeText(applicationContext, "성공적으로 가입되었습니다.", Toast.LENGTH_LONG).show()
-                        startActivity(Intent(applicationContext, MyPageActivity::class.java))
+                        startActivity(Intent(applicationContext, RoomChoose::class.java))
                     } else { //message == 0
                         Toast.makeText(applicationContext, "참가코드를 올바르게 입력해주세요", Toast.LENGTH_LONG).show()
                     }

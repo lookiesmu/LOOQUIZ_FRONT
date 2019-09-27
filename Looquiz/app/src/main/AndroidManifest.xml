@@ -38,8 +38,6 @@
         </activity>
         <activity android:name=".QuizRateActivity">
         </activity>
-        <activity android:name=".RateMapActivity">
-        </activity>
         <activity android:name=".MyPageActivity">
         </activity>
         <activity android:name=".MyRoomActivity">
@@ -59,7 +57,7 @@
         <activity android:name=".JoinRoomActivity">
         </activity>
         <activity android:name=".SignInActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+                  android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -24,10 +24,12 @@ class MyRoomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_myroom)
-        Asynctask().execute("0",getString(R.string.room_quizlist),myroom_roomcodenum)
 
         myroom_roomtitle = intent.getStringExtra("title")
         myroom_roomcodenum = intent.getStringExtra("codenum")
+
+        Asynctask().execute("0",getString(R.string.room_quizlist),myroom_roomcodenum)
+        Log.d("check",myroom_roomcodenum)
 
         myroom_title.text = myroom_roomtitle
         myroom_codenum.text = myroom_roomcodenum
@@ -45,7 +47,7 @@ class MyRoomActivity : AppCompatActivity() {
         //멤버조회
         myroom_member.setOnClickListener {
 
-            Asynctask().execute(getString(R.string.search_mem),myroom_roomcodenum)
+            Asynctask().execute("1",getString(R.string.search_mem),myroom_roomcodenum)
             var builder = AlertDialog.Builder(this)
             builder.setTitle(myroom_roomtitle.toString())
 
@@ -54,8 +56,10 @@ class MyRoomActivity : AppCompatActivity() {
             builder.show()
         }
         myroom_createquiz.setOnClickListener {
-            startActivity(Intent(this,MakingQuizActivity::class.java))
-
+            var makingQuizIntent = Intent(this, MakingQuizActivity::class.java)
+            //makingQuizIntent.putExtra("rname", myroom_rname.toString())
+            makingQuizIntent.putExtra("roomcodenum", myroom_codenum.text.toString())
+            startActivity(makingQuizIntent)
         }
     }
     inner class Asynctask: AsyncTask<String, Void, String>() {

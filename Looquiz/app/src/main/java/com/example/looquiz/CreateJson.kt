@@ -47,8 +47,9 @@ class CreateJson {
         return JSONObject.toString()
     }
 
-    fun json_createquiz(rname:String?,dname:String?,qname:String?,qcontent1:String?,qcontent2:String?,qcontent3:String?
-                        ,qcontent4:String?,qcontent5:String?,hcontent:String?,cityname:String?,answer:Int?,solution:String?):String?{
+    fun json_createquiz(rname:String?,dname:String?,qname:String?,qcontent1:String?,
+                        qcontent2:String?,qcontent3:String?,qcontent4:String?,qcontent5:String?,
+                        hcontent:String?,cityname:String?,answer:Int?, codenum: String?, solution:String?):String?{
 
         var JSONObject = JSONObject()
         JSONObject.put("rname",rname)
@@ -62,6 +63,7 @@ class CreateJson {
         JSONObject.put("hcontent",hcontent)
         JSONObject.put("cityname",cityname)
         JSONObject.put("answer",answer)
+        JSONObject.put("codenum", codenum)
         JSONObject.put("solution",solution)
 
         return JSONObject.toString()
