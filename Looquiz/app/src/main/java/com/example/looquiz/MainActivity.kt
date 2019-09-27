@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var view:View = navigationView.getHeaderView(0)
         var btn_logout = view.findViewById<Button>(R.id.btn_logout)
         btn_logout.setOnClickListener {
+            Asynctask().execute("2",getString(R.string.logout))
             Toast.makeText(this, "로그아웃 버튼 누름", Toast.LENGTH_LONG).show()
         }
 
@@ -289,7 +290,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state = -1 // GET_regionList = 0(전체도시 리스트 조회)  POST_enterRoom = 1(방 참여)
+        var state = -1 // GET_regionList = 0(전체도시 리스트 조회)  POST_enterRoom = 1(방 참여) GET_logout=2
         var response: String? = null
 
         override fun doInBackground(vararg params: String): String? {
@@ -308,6 +309,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             } else if(state == 1){
                 var codenum = params[2]
                 response = Okhttp(applicationContext).POST(client, url, CreateJson().json_enterroom(codenum))
+            }
+            else{
+                response = Okhttp(applicationContext).GET(client, url)
+                Log.d("check",url)
             }
             Log.d("통신 결과 response >> ", response)
             return response
@@ -349,6 +354,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     } else { //message == 0
                         Toast.makeText(applicationContext, "참가코드를 올바르게 입력해주세요", Toast.LENGTH_LONG).show()
                     }
+                }
+                else{
+
                 }
             }
         }

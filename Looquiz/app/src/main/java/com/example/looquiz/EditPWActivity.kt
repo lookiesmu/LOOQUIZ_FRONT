@@ -6,6 +6,8 @@ import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.act_edit_pw.*
@@ -39,10 +41,28 @@ class EditPWActivity : AppCompatActivity() {
         var checkPWView = layoutInflater.inflate(R.layout.dia_checkpw, null)
         checkPWBuilder.setView(checkPWView)
 
+        /*var data:String? = null
+        checkpw_inputpw.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                data= checkpw_inputpw.text.toString()
+                checkpw_inputpw.setText(data)
+            }
+        })*/
         var checkPWListener = object :DialogInterface.OnClickListener{
 
+
             override fun onClick(dialog: DialogInterface?, which: Int) {
+
                 Asynctask().execute("0",getString(R.string.checkpw),checkpw_inputpw.text.toString())
+                //Log.d("check",checkpw_input)
             }
         }
         checkPWBuilder.setPositiveButton("확인", checkPWListener)
@@ -60,8 +80,8 @@ class EditPWActivity : AppCompatActivity() {
             var url = params[1]
             pw = params[2]
             if(state == 0){
-
                 response = Okhttp(applicationContext).POST(client,url,CreateJson().json_checkpw(pw))
+                Log.d("check",url)
 
             }
             else if(state == 1) {

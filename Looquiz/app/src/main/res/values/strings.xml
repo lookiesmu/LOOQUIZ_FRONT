@@ -7,36 +7,36 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="server_url">https://99848f7e.ngrok.io/hi_story</string>
+    <string name="signup_checkID">https://99848f7e.ngrok.io/hi_storycheckID?uid=</string>
+    <string name="checkpw">https://99848f7e.ngrok.io/hi_story/checkPW</string>
+    <string name="signup">https://99848f7e.ngrok.io/hi_story/signUp</string>
+    <string name="signin">https://99848f7e.ngrok.io/hi_story/signIn</string>
+    <string name="logout">https://99848f7e.ngrok.io/hi_story/logOut</string>
+    <string name="findID">https://99848f7e.ngrok.io/hi_story/findID?uname=</string>
+    <string name="findPW">https://99848f7e.ngrok.io/hi_story/checkID?uid=</string>
+    <string name="edit_pw">https://99848f7e.ngrok.io/hi_story/updateMember</string>
+    <string name="delete_mem">https://99848f7e.ngrok.io/hi_story/deleteMem</string>
+    <string name="create_quiz">https://99848f7e.ngrok.io/hi_story/createQ</string>
+    <string name="delete_quiz">https://99848f7e.ngrok.io/hi_story/deleteQ?qid=</string>
+    <string name="scuccesrate">https://99848f7e.ngrok.io/hi_story/successRate?cityname=</string>
+    <string name="edit_quiz">https://99848f7e.ngrok.io/hi_story/editingQuiz</string>
+    <string name="search_mem">https://99848f7e.ngrok.io/hi_story/searchMem</string>
+    <string name="enter_room">https://99848f7e.ngrok.io/hi_story/enterRoom</string>
+    <string name="delete_room">https://99848f7e.ngrok.io/hi_story/deleteRoom?codenum=</string>
+    <string name="corplist">https://99848f7e.ngrok.io/hi_story/storeList</string>
+    <string name="badge">https://99848f7e.ngrok.io/hi_story/badge</string>
+    <string name="cityname">https://99848f7e.ngrok.io/hi_story/rnameList?cityname=</string>
+    <string name="search_makeroom">https://99848f7e.ngrok.io/hi_story/makeRoomSearch</string>
+    <string name="participate_room">https://99848f7e.ngrok.io/hi_story/participateRoom</string>
+    <string name="region_quizlist">https://99848f7e.ngrok.io/hi_story/regionQuizList</string>
+    <string name="make_room">https://99848f7e.ngrok.io/hi_story/makeRoom</string>
+    <string name="room_quizlist">https://99848f7e.ngrok.io/hi_story/roomQuizList</string>
+    <string name="before_quiz">https://99848f7e.ngrok.io/hi_story/quizQuestion</string>
+    <string name="after_quiz">https://99848f7e.ngrok.io/hi_story/takeQuiz</string>
+    <string name="citylist">https://99848f7e.ngrok.io/hi_story/cityList</string>
+    <string name="get_badge">https://99848f7e.ngrok.io/hi_story/getUserBadge</string>
 
-    <string name="server_url">https://a1e1f299.ngrok.io/hi_story</string>
-    <string name="signup_checkID">https://a1e1f299.ngrok.io/hi_story/checkID?uid=</string>
-    <string name="checkpw">https://a1e1f299.ngrok.io/hi_story/checkPW</string>
-    <string name="signup">https://a1e1f299.ngrok.io/hi_story/signUp</string>
-    <string name="signin">https://a1e1f299.ngrok.io/hi_story/signIn</string>
-    <string name="logout">https://a1e1f299.ngrok.io/hi_story/logOut</string>
-    <string name="findID">https://a1e1f299.ngrok.io/hi_story/findID?uname=</string>
-    <string name="findPW">https://a1e1f299.ngrok.io/hi_story/checkID?uid=</string>
-    <string name="edit_pw">https://a1e1f299.ngrok.io/hi_story/updateMember</string>
-    <string name="delete_mem">https://a1e1f299.ngrok.io/hi_story/deleteMem</string>
-    <string name="create_quiz">https://a1e1f299.ngrok.io/hi_story/createQ</string>
-    <string name="delete_quiz">https://a1e1f299.ngrok.io/hi_story/deleteQ?qid=</string>
-    <string name="scuccesrate">https://a1e1f299.ngrok.io/hi_story/successRate?cityname=</string>
-    <string name="edit_quiz">https://a1e1f299.ngrok.io/hi_story/editingQuiz</string>
-    <string name="search_mem">https://a1e1f299.ngrok.io/hi_story/searchMem</string>
-    <string name="enter_room">https://a1e1f299.ngrok.io/hi_story/enterRoom</string>
-    <string name="delete_room">https://a1e1f299.ngrok.io/hi_story/deleteRoom</string>
-    <string name="corplist">https://a1e1f299.ngrok.io/hi_story/corpList?bid=</string>
-    <string name="badge">https://a1e1f299.ngrok.io/hi_story/badge</string>
-    <string name="cityname">https://a1e1f299.ngrok.io/hi_story/rnameList?cityname=</string>
-    <string name="search_makeroom">https://a1e1f299.ngrok.io/hi_story/makeRoomSearch</string>
-    <string name="participate_room">https://a1e1f299.ngrok.io/hi_story/participateRoom</string>
-    <string name="region_quizlist">https://a1e1f299.ngrok.io/hi_story/regionQuizList</string>
-    <string name="make_room">https://a1e1f299.ngrok.io/hi_story/makeRoom</string>
-    <string name="room_quizlist">https://a1e1f299.ngrok.io/hi_story/roomQuizList</string>
-    <string name="before_quiz">https://a1e1f299.ngrok.io/hi_story/quizQuestion</string>
-    <string name="after_quiz">https://a1e1f299.ngrok.io/hi_story/takeQuiz</string>
-    <string name="citylist">https://a1e1f299.ngrok.io/hi_story/cityList</string>
-    <string name="get_badge">https://a1e1f299.ngrok.io/hi_story/getUserBadge</string>
 
     <string name="menu_seoul">서울</string>
     <string name="menu_gyeongsang">경주</string>
