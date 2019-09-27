@@ -79,6 +79,7 @@ class QuizRateActivity : AppCompatActivity() {
                         var oCount : Int = jsonrate.getInt("oCount")
                         mAdapter.cityList.add(QuizRate(cityimg.get(rname),rname,oCount))
                         mAdapter.notifyDataSetChanged()
+                        Log.d("check",cityList.toString())
 
                     }
                 }

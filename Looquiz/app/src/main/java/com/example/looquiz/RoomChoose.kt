@@ -44,7 +44,7 @@ class RoomChoose : AppCompatActivity() {
         setContentView(R.layout.room_choose)
 
         Asynctask().execute("0",getString(R.string.search_makeroom))
-        //Asynctask().execute("1",getString(R.string.participate_room))
+        Asynctask().execute("1",getString(R.string.participate_room))
 
 
         supportActionBar?.hide()
@@ -53,6 +53,7 @@ class RoomChoose : AppCompatActivity() {
         frag_list.add(myRoom_Fragment)
         title_list.add("내가 참여한 방")
         frag_list.add(joinRoom_Fragment)
+
         tabs.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(p0: TabLayout.Tab?) {
                 if(p0!!.position == 1)
