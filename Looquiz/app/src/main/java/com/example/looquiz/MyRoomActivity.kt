@@ -20,7 +20,7 @@ class MyRoomActivity : AppCompatActivity() {
     var myroom_roomcodenum: String? = null
     var myroom_roomtitle:String? = null
     var rname:String? = null
-
+    lateinit var quizlistAdapter : QuizlistAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_myroom)
@@ -36,7 +36,7 @@ class MyRoomActivity : AppCompatActivity() {
         myroom_rname.text = rname
 
 
-        val quizlistAdapter = QuizlistAdapter(this, this.myroom_roomcodenum!!,quizlist,true)
+        quizlistAdapter = QuizlistAdapter(this, this.myroom_roomcodenum!!,quizlist,true)
         myroom_rv.adapter=quizlistAdapter
 
         val quizlistlm = LinearLayoutManager(this)
@@ -106,7 +106,9 @@ class MyRoomActivity : AppCompatActivity() {
                             var dname : String = jsonquiz.getString("dname")
                             var qname : String = jsonquiz.getString("qname")
                             myroom_rname.text = jsonquiz.getString("rname")
-                            quizlist.add(Quizlist(qname,dname,qid))
+                            quizlistAdapter.quizlist.add(Quizlist(qname,dname,qid))
+                            quizlistAdapter.notifyDataSetChanged()
+
                         }
                     }
                 }
