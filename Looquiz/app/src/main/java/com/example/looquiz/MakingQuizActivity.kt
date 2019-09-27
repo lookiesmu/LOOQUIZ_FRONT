@@ -12,43 +12,25 @@ import org.json.JSONObject
 
 class MakingQuizActivity : AppCompatActivity() {
 
+    //var dnameList = arrayOf("", "", "", "", "", "", "", "", "", "")
+    //var dnameList = mutableListOf<String>()
+    var dnameList = arrayListOf<String>()
+    //var selectedDname = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_making_quiz)
 
-        var radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        Asynctask().execute("1", getString(R.string.region_quizlist), "경복궁")
 
-/*
-        var rname = 유적지 이름 - 경복궁
-        var dname = 세부 장소 - 광화문
-        var qname = 퀴즈 질문
-        var qcontent1 = 1
-        var qcontent2 = 2
-        var qcontent3 = 3
-        var qcontent4 = 4
-        var qcontent5 = 5
-        var hcontent = 힌트
-        var cityname = 도시이름 - 서울
-        var answer = 정답 번호 - 3
-        var solution = 해설
-  */
-        makingquiz_btn.setOnClickListener{
-            var radioBtn = findViewById<RadioButton>(radioGroup.checkedRadioButtonId)
-            //Log.d("radioBtn>> ", ""+radioBtn.text.toString().toInt())
-            Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", "광화문",
-                makingquiz_inputquestion.text.toString(), makingquiz_inputans1.text.toString(), makingquiz_inputans2.text.toString(),
-                makingquiz_inputans3.text.toString(), makingquiz_inputans4.text.toString(), makingquiz_inputans5.text.toString(),
-                makingquiz_inputhint.text.toString(), "서울", "3", makingquiz_inputcontent.text.toString()
-                )
-
-            //Asynctask().execute("2", getString(R.string.get_badge), "경복궁")
-        }
-/*
-        //지역선택 spinner
-        input_region.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+        var spinnerAdapter1 = ArrayAdapter(this, android.R.layout.simple_list_item_1, dnameList)
+        spinnerAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        /*makingquiz_spinner.adapter = spinnerAdapter1
+        makingquiz_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                Log.d("position 확인", ""+position)
+                //selectedDname = dnameList[position]
+                Log.d("makingquiz_spinner 확인", ""+dnameList[position])
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -56,10 +38,26 @@ class MakingQuizActivity : AppCompatActivity() {
             }
         }
 */
+
+
+        var radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+
+        makingquiz_btn.setOnClickListener{
+            var radio_answer = findViewById<RadioButton>(radioGroup.checkedRadioButtonId)
+
+            Asynctask().execute("0", getString(R.string.create_quiz), "경복궁", makingquiz_inputdname.text.toString(),
+                makingquiz_inputquestion.text.toString(), makingquiz_inputans1.text.toString(), makingquiz_inputans2.text.toString(),
+                makingquiz_inputans3.text.toString(), makingquiz_inputans4.text.toString(), makingquiz_inputans5.text.toString(),
+                makingquiz_inputhint.text.toString(), "서울", radio_answer.text.toString(), makingquiz_inputcontent.text.toString()
+            )
+
+            //Asynctask().execute("2", getString(R.string.get_badge), "경복궁")
+        }
+
     }
 
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state : Int = -1 // POST_createQ = 0 DELETE_delete =1
+        var state : Int = -1 // POST_createQ = 0,  POST_regionQuizList =1
         var response: String? = null
 
         override fun doInBackground(vararg params: String): String? {
@@ -89,10 +87,8 @@ class MakingQuizActivity : AppCompatActivity() {
             } else if( state == 1){
                 Log.d("1 param[1] 확인", ""+params[1])
                 Log.d("1 param[2] 확인", ""+params[2])
-                var qid = params[2].toInt()
-                url = url +"${qid}"
-                Log.d("deleteQ url check>> ", ""+url)
-                response = Okhttp(applicationContext).DELETE(client, url)
+                var rname = params[2]
+                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_regionquizlist(rname))
 
             } else if( state ==2){
                 Log.d("2 param[2] 확인", ""+params[2])
@@ -116,15 +112,24 @@ class MakingQuizActivity : AppCompatActivity() {
                 if (state == 0) { //GET_idcheck
                     if (json.getInt("message").equals(1)) {
                         Toast.makeText(applicationContext, "퀴즈가 생성되었습니다.", Toast.LENGTH_SHORT).show()
-                        finish()
                     } else {
                         Toast.makeText(applicationContext, "퀴즈 생성에 실패했습니다.\n다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
                     }
                 } else if (state == 1) {
-                    if (json.getInt("message").equals(1)) {
-                        Toast.makeText(applicationContext, "퀴즈가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(applicationContext, "퀴즈 삭제를 실패했습니다.\n다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
+                    if(json.getInt("message") == 1){
+                        var jsonArray = json.getJSONArray("data")
+                        Log.d("MakingQuiz jsonArray >>", ""+jsonArray)
+                        for(i in 0 until jsonArray.length()){
+                            Log.d("obj", ""+jsonArray.get(i))
+                            var jsonObject:JSONObject = jsonArray.getJSONObject(i)
+                            //dnameList.add(i,jsonObject.getString("dname").toString())
+                            dnameList.add(jsonObject.getString("dname").toString())
+                            //Log.d("dnameList 확인", ""+dnameList[i])
+                        }
+                        Log.d("dnameList 확인", ""+dnameList)
+                    } else{ //state=0, message = 0
+                        Log.d("Fail 0", " 0 네트워크 연결이 좋지 않음")
+                        Toast.makeText(applicationContext, "네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
                     }
                 } else if(state == 2){
                     if (json.getInt("message").equals(1)) {

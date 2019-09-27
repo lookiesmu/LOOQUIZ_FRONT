@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.act_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main2.*
+import kotlinx.android.synthetic.main.dia_hint.view.*
 import kotlinx.android.synthetic.main.dia_quiz.view.*
 import okhttp3.OkHttpClient
 import org.json.JSONObject
@@ -65,6 +66,9 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     lateinit var diaQuizView:View
     //var diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
+
+    //var checkAllQuiz:MutableSet<Int>? = null
+    var checkAllQuiz = mutableSetOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,6 +106,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
     }
 
     override fun onBackPressed() {
@@ -187,31 +192,33 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             var marker1 = gMap?.addMarker(MarkerOptions().position(quest1))
             marker1?.title = "광화문"
             marker1?.tag = 1
-            /*
-            var map1: HashMap<MarkerOptions().position(quest1), Int> = hashMapOf(marker1 to 1)
-            var map = HashMap<String, Int>()
-            map.put("one", 1)
-            map.put("four", 4)
-            Log.d("map Log", ""+map.get("four"))
-            */
             var marker2 = gMap?.addMarker(MarkerOptions().position(quest2))
             marker2?.title = "신무문"
+            marker2?.tag = 2
             var marker3 = gMap?.addMarker(MarkerOptions().position(quest3))
             marker3?.title = "동십자각"
+            marker3?.tag = 3
             var marker4 = gMap?.addMarker(MarkerOptions().position(quest4))
             marker4?.title = "근정전"
+            marker4?.tag = 4
             var marker5 = gMap?.addMarker(MarkerOptions().position(quest5))
             marker5?.title = "사정전"
+            marker5?.tag = 5
             var marker6 = gMap?.addMarker(MarkerOptions().position(quest6))
             marker6?.title = "자경전"
+            marker6?.tag = 6
             var marker7 = gMap?.addMarker(MarkerOptions().position(quest7))
             marker7?.title = "경회루"
+            marker7?.tag = 7
             var marker8 = gMap?.addMarker(MarkerOptions().position(quest8))
             marker8?.title = "태원전"
+            marker8?.tag = 8
             var marker9 = gMap?.addMarker(MarkerOptions().position(quest9))
             marker9?.title = "건청궁"
-            var marker10 = gMap?.addMarker(MarkerOptions().position(quest9))
+            marker9?.tag = 9
+            var marker10 = gMap?.addMarker(MarkerOptions().position(quest10))
             marker10?.title = "국립고궁박물관"
+            marker10?.tag = 10
 
             gMap?.setOnInfoWindowClickListener {
                 distance = getDistance(userLoc, it.position)
@@ -251,95 +258,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     fun makeQuiz(regionName: String?, quizId: Int) {//fun makeQuiz(regionName: String?, quizId: Int)
         Asynctask().execute("1",getString(R.string.before_quiz), quizId.toString())
-
-        var quizBuilder = AlertDialog.Builder(this@Main2Activity)
-        diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
-        //var diaQuizBtnView = layoutInflater.inflate(R.layout.dia_quiz_button, null)
-        var quizBuilder2: AlertDialog = quizBuilder.create()
-
-        var quizAnsBuilder = AlertDialog.Builder(this@Main2Activity)
-        var quizAnsView = layoutInflater.inflate(R.layout.dia_ans, null)
-        //var quizAnsBuilder2: AlertDialog = quizAnsBuilder.create()
-        quizAnsBuilder.setView(quizAnsView)
-        quizAnsBuilder.setPositiveButton("확인", null)
-
-        var quizWAnsBuilder = AlertDialog.Builder(this@Main2Activity)
-        var quizWAnsView = layoutInflater.inflate(R.layout.dia_wans, null)
-        //var quizWAnsBuilder2: AlertDialog = quizWAnsBuilder.create()
-        quizWAnsBuilder.setView(quizWAnsView)
-        quizWAnsBuilder.setPositiveButton("닫기", null)
-
-        var hintBuilder = AlertDialog.Builder(this@Main2Activity)
-        var diaHintView = layoutInflater.inflate(R.layout.dia_hint, null)
-        //var hintBuilder2: AlertDialog = hintBuilder.create()
-        hintBuilder.setView(diaHintView)
-        hintBuilder.setPositiveButton("확인", null)
-
-        var btnHint: Button = diaQuizView.findViewById<Button>(R.id.btn_hint)
-        btnHint.setOnClickListener {
-            quizBuilder2.dismiss()
-            hintBuilder.show()
-        }
-
-        var btnReport: Button = quizAnsView.findViewById(R.id.btn_report)
-        btnReport.setOnClickListener {
-            //오류 신고
-        }
-        var selectItem = -1
-
-        var choiceListener = object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                selectItem = which
-            }
-        }
-
-        var diaListListener = object : DialogInterface.OnClickListener {
-            override fun onClick(dialog: DialogInterface?, which: Int) {
-                if (selectItem == -1) {
-                    Toast.makeText(this@Main2Activity, "항목을 선택해주세요", Toast.LENGTH_LONG).show()
-                    quizBuilder2.dismiss()
-                    makeQuiz(regionName, quizId)
-                } else {
-                    //Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
-                    quizBuilder2.dismiss()
-                    //정답일 경우
-                    quizAnsBuilder.show()
-
-                    //오답일 경우
-                    //quizWAnsBuilder.show()
-                }
-            }
-        }
-
-        diaQuizView.findViewById<TextView>(R.id.region_name).text = regionName
-        quizBuilder.setCustomTitle(diaQuizView)
-        //quizBuilder.setView(diaQuizBtnView)
-        quizBuilder.setSingleChoiceItems(quizList, -1, choiceListener)
-/*
-        diaQuizBtnView.findViewById<Button>(R.id.btn_quiz_yes).setOnClickListener {
-            if (selectItem == -1) {
-                Toast.makeText(this@Main2Activity, "항목을 선택해주세요", Toast.LENGTH_LONG).show()
-                quizAnsBuilder2.setCancelable(false)
-            } else {
-                Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
-                quizBuilder2.dismiss()
-
-                //정답일 경우
-                quizAnsBuilder.show()
-
-                //오답일 경우
-                //quizWAnsBuilder.show()
-            }
-        }
-        diaQuizBtnView.findViewById<Button>(R.id.btn_quiz_no).setOnClickListener {
-            //quizAnsBuilder2.setCancelable(true)
-            quizBuilder2.dismiss()
-        }
-        */
-        quizBuilder.setPositiveButton("확인", diaListListener)
-        quizBuilder.setNegativeButton("취소", null)
-        quizBuilder.show()
-
+        Log.d("순서 확인 ", "33333333333")
     }
 
     //현재위치 측정
@@ -428,15 +347,21 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         }
     }
 
+    fun checkBadge(allQuizList: MutableSet<Int>){
+        if (allQuizList.size >= 7){
+            Asynctask().execute("3", getString(R.string.get_badge), region.text.toString())
+
+        }
+    }
+
     inner class Asynctask: AsyncTask<String, Void, String>() {
-        var state = -1 //POST_regionQuizList= 0 , POST_quizQuestion = 1
+        var state = -1 //POST_regionQuizList= 0 , POST_quizQuestion = 1 POST_takeQuiz = 2, POST_getUserBadge = 3
         var response:String? = null
 
         override fun doInBackground(vararg params: String?): String? {
             state = Integer.parseInt(params[0])
             var client = OkHttpClient()
             var url = params[1]
-            Log.d("param[2] 확인", ""+params[2])
 
             if(state == 0){ //퀴즈 리스트 조회
                 var rname = params[2]
@@ -444,6 +369,16 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             } else if(state == 1){ //퀴즈 문제 조회
                 var quizId = params[2].toString().toInt()
                 response = Okhttp(applicationContext).POST(client, url,CreateJson().json_beforequiz(quizId))
+            } else if( state ==2){
+                Log.d("2 param[2] 확인", ""+params[2])
+                var rname = params[2]
+                Log.d("2 param[3] 확인", ""+params[3])
+                var quiz_result = params[3].toString().toInt()
+                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_afterquiz(rname, quiz_result))
+            }else if(state == 3){
+                Log.d("3 param[2] 확인", ""+params[2])
+                var rname = params[2]
+                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_getbadge(rname))
             }
 
             Log.d("통신 결과 response >> ", response)
@@ -462,12 +397,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 if(state == 0){
                     if(json.getInt("message") == 1){
                         var jsonArray = json.getJSONArray("data")
-                        for (i in 0 until jsonArray.length()){
-                            Log.d("obj", ""+jsonArray.get(i))
-                            var jsonObject:JSONObject = jsonArray.getJSONObject(i)
-                            Log.d("obj > qid", ""+jsonObject.getInt("qid"))
-                            Log.d("obj > dname", ""+jsonObject.getString("dname"))
-                        }
+                        Log.d("jsonArray >>", ""+jsonArray)
 
                     } else{ //state=0, message = 0
                         Log.d("Fail 0", " 0 네트워크 연결이 좋지 않음")
@@ -476,13 +406,88 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 } else if(state == 1){
                     if (json.getInt("message") == 1){
                         var jsonObject = json.getJSONObject("data")
-                        Log.d("data >> ", ""+jsonObject)
+                        Log.d("state1 data >> ", ""+jsonObject)
+
+                        var quizBuilder = AlertDialog.Builder(this@Main2Activity)
+                        diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
+                        var quizBuilder2: AlertDialog = quizBuilder.create()
+
+                        var quizAnsBuilder = AlertDialog.Builder(this@Main2Activity)
+                        var quizAnsView = layoutInflater.inflate(R.layout.dia_ans, null)
+                        quizAnsBuilder.setView(quizAnsView)
+                        quizAnsBuilder.setPositiveButton("확인", null)
+
+                        var quizWAnsBuilder = AlertDialog.Builder(this@Main2Activity)
+                        var quizWAnsView = layoutInflater.inflate(R.layout.dia_wans, null)
+                        quizWAnsBuilder.setView(quizWAnsView)
+                        quizWAnsBuilder.setPositiveButton("닫기", null)
+
+                        var hintBuilder = AlertDialog.Builder(this@Main2Activity)
+                        var diaHintView = layoutInflater.inflate(R.layout.dia_hint, null)
+                        hintBuilder.setView(diaHintView)
+                        hintBuilder.setPositiveButton("확인", null)
+
+                        var btnHint: Button = diaQuizView.findViewById<Button>(R.id.btn_hint)
+                        btnHint.setOnClickListener {
+                            quizBuilder2.dismiss()
+                            hintBuilder.show()
+                        }
+                        var selectItem = -1
+
+                        var choiceListener = object : DialogInterface.OnClickListener {
+                            override fun onClick(dialog: DialogInterface?, which: Int) {
+                                selectItem = which
+                            }
+                        }
+
+                        var diaListListener = object : DialogInterface.OnClickListener {
+                            override fun onClick(dialog: DialogInterface?, which: Int) {
+                                if (selectItem == -1) {
+                                    Toast.makeText(this@Main2Activity, "항목을 선택해주세요", Toast.LENGTH_LONG).show()
+                                    quizBuilder2.dismiss()
+                                    makeQuiz(jsonObject.get("dname").toString(), jsonObject.get("qid").toString().toInt())
+                                } else {
+                                    //Toast.makeText(this@Main2Activity, " ${selectItem}번째, ${quizList[selectItem]}", Toast.LENGTH_LONG).show()
+                                    quizBuilder2.dismiss()
+                                    //정답일 경우
+                                    if (selectItem+1 == jsonObject.get("answer").toString().toInt()){
+                                        quizAnsBuilder.show()
+                                        checkAllQuiz?.add(jsonObject.get("qid").toString().toInt())
+                                        Log.d("checkAllQuiz 정답 후 확인", ""+checkAllQuiz)
+                                        Asynctask().execute("2", getString(R.string.after_quiz), region.text.toString(), "1")
+                                        checkBadge(checkAllQuiz)
+                                    }else{ //오답일 경우
+                                        quizWAnsBuilder.show()
+                                        checkAllQuiz?.remove(jsonObject.get("qid").toString().toInt())
+                                        Log.d("checkAllQuiz 오답 후 확인", ""+checkAllQuiz)
+                                        Asynctask().execute("2", getString(R.string.after_quiz), region.text.toString(), "0")
+                                    }
+                                }
+                            }
+                        }
+
                         diaQuizView.region_question.text= jsonObject.getString("qname")
                         quizList = arrayOf(jsonObject.getString("qcontent1"), jsonObject.getString("qcontent2"),
                             jsonObject.getString("qcontent3"), jsonObject.getString("qcontent4"), jsonObject.getString("qcontent5"))
+                        //diaHintView.quiz_hint.text = jsonObject.getString("hcontent")
+
+                        //diaQuizView.findViewById<TextView>(R.id.region_name).text = jsonObject.get("dname").toString()
+                        quizBuilder.setCustomTitle(diaQuizView)
+                        //quizBuilder.setView(diaQuizBtnView)
+
+                        quizBuilder.setSingleChoiceItems(quizList, -1, choiceListener)
+                        quizBuilder.setPositiveButton("확인", diaListListener)
+                        quizBuilder.setNegativeButton("취소", null)
+                        quizBuilder.show()
                     } else {
                         Log.d("Fail 1", " 1 네트워크 연결이 좋지 않음")
                         Toast.makeText(applicationContext, "1 네트워크 연결이 좋지 않습니다.", Toast.LENGTH_LONG).show()
+                    }
+                } else if(state == 2){
+                    if (json.getInt("message").equals(1)) {
+                        Toast.makeText(applicationContext, "뱃지가 생성되었습니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "다시 시도해주십시오.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
