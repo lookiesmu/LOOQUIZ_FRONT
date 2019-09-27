@@ -56,7 +56,7 @@ class EditPWActivity : AppCompatActivity() {
             }
         }
         btn_secession.setOnClickListener {
-            Asynctask().execute("2",getString(R.string.delete_mem),pw)
+            Asynctask().execute("2",getString(R.string.delete_mem),checkpw_edittext.text.toString())
             Toast.makeText(applicationContext," 회원 탈퇴 되었습니다 ",Toast.LENGTH_SHORT).show()
         }
     }
@@ -80,7 +80,7 @@ class EditPWActivity : AppCompatActivity() {
             }
 
             else if(state == 2) {
-                response = Okhttp(applicationContext).PUT(client, url, CreateJson().json_secession(pw))
+                response = Okhttp(applicationContext).POST(client, url, CreateJson().json_secession(pw))
             }
 
             return response

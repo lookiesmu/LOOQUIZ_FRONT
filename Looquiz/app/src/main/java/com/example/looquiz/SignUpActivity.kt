@@ -50,6 +50,7 @@ class SignUpActivity : AppCompatActivity() {
 
             if(state == 0){ //GET_idcheck
                 url = url + "${uid}"
+                Log.d("check",url)
                 response = Okhttp(applicationContext).GET(client, url)
             }
             else if (state == 1){ //POST_signup
