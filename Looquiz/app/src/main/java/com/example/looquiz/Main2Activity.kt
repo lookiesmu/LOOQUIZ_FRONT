@@ -64,7 +64,7 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         android.Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
-    lateinit var diaQuizView:View
+    //lateinit var diaQuizView:View
     //var diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
 
     //var checkAllQuiz:MutableSet<Int>? = null
@@ -390,16 +390,18 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                         Log.d("state1 data >> ", ""+jsonObject)
 
                         var quizBuilder = AlertDialog.Builder(this@Main2Activity)
-                        diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
+                        var diaQuizView = layoutInflater.inflate(R.layout.dia_quiz, null)
                         var quizBuilder2: AlertDialog = quizBuilder.create()
 
                         var quizAnsBuilder = AlertDialog.Builder(this@Main2Activity)
                         var quizAnsView = layoutInflater.inflate(R.layout.dia_ans, null)
+                        quizAnsView.findViewById<TextView>(R.id.region_name).text = jsonObject.get("dname").toString()
                         quizAnsBuilder.setView(quizAnsView)
                         quizAnsBuilder.setPositiveButton("확인", null)
 
                         var quizWAnsBuilder = AlertDialog.Builder(this@Main2Activity)
                         var quizWAnsView = layoutInflater.inflate(R.layout.dia_wans, null)
+                        quizWAnsView.findViewById<TextView>(R.id.region_name).text = jsonObject.get("dname").toString()
                         quizWAnsBuilder.setView(quizWAnsView)
                         quizWAnsBuilder.setPositiveButton("닫기", null)
 
@@ -449,9 +451,9 @@ class Main2Activity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                         diaQuizView.region_question.text= jsonObject.getString("qname")
                         quizList = arrayOf(jsonObject.getString("qcontent1"), jsonObject.getString("qcontent2"),
                             jsonObject.getString("qcontent3"), jsonObject.getString("qcontent4"), jsonObject.getString("qcontent5"))
-                        //diaHintView.quiz_hint.text = jsonObject.getString("hcontent")
+                        diaHintView.quiz_hint.text = jsonObject.getString("hcontent")
 
-                        //diaQuizView.findViewById<TextView>(R.id.region_name).text = jsonObject.get("dname").toString()
+                        diaQuizView.findViewById<TextView>(R.id.region_name).text = jsonObject.get("dname").toString()
                         quizBuilder.setCustomTitle(diaQuizView)
                         //quizBuilder.setView(diaQuizBtnView)
 

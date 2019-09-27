@@ -5,10 +5,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
     <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="힌트"
+            android:textSize="14dp"
+            android:textColor="#000000"/>
+    <TextView
             android:id="@+id/quiz_hint"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="힌트"
+            android:layout_height="wrap_content"
             android:textSize="14dp"
             android:textColor="#000000"/>
 

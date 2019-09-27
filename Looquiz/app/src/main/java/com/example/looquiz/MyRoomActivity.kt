@@ -29,7 +29,9 @@ class MyRoomActivity : AppCompatActivity() {
         myroom_roomcodenum = intent.getStringExtra("codenum")
 
         Asynctask().execute("0",getString(R.string.room_quizlist),myroom_roomcodenum)
+
         Log.d("check",myroom_roomcodenum)
+
 
         myroom_title.text = myroom_roomtitle
         myroom_codenum.text = myroom_roomcodenum
@@ -98,7 +100,7 @@ class MyRoomActivity : AppCompatActivity() {
 
                         var json = JSONObject(result)
                         var jsonary = json.getJSONArray("data")
-                     //   var message = json.getInt("message")
+                        //   var message = json.getInt("message")
 
                         for(i in 0 until jsonary.length()){
                             var jsonquiz = jsonary[0] as JSONObject
