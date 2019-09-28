@@ -14,16 +14,20 @@
         tools:context=".SignUpActivity" android:layout_marginLeft="5dp">
     <LinearLayout
             android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content">
         <TextView
                 android:text="ID"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
         <EditText
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
+                android:background="@drawable/statelist_drawable"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:padding="10dp"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/signup_inputID" android:hint="아이디를 입력해주세요" android:layout_marginLeft="5dp"
@@ -31,21 +35,29 @@
 
         <Button
                 android:text="중복확인"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" android:id="@+id/signup_btnCHECK"/>
+                android:background="@drawable/button_drawable"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="10dp"
+                android:textSize="12.5dp"
+                android:layout_width="60dp"
+                android:layout_height="35dp" android:id="@+id/signup_btnCHECK"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="5dp">
         <TextView
                 android:text="PW"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
         <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@drawable/statelist_drawable"
+                android:layout_width="270dp"
+                android:layout_height="35dp"
+                android:padding="10dp"
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/signup_inputPW" android:hint="비밀번호를 입력해주세요" android:layout_marginLeft="5dp"
@@ -54,15 +66,19 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="5dp">
         <TextView
                 android:text="PW확인"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:maxLines="1"/>
         <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@drawable/statelist_drawable"
+                android:layout_width="270dp"
+                android:layout_height="35dp"
+                android:padding="10dp"
                 android:ems="10"
                 android:id="@+id/signup_inputPW2" android:hint="비밀번호를 다시 입력해주세요" android:layout_marginLeft="5dp"
                 android:textSize="14sp" android:inputType="textPassword"/>
@@ -70,15 +86,19 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="5dp">
         <TextView
                 android:text="이름"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
         <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@drawable/statelist_drawable"
+                android:layout_width="270dp"
+                android:layout_height="35dp"
+                android:padding="10dp"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/signup_inputNAME" android:hint="비밀번호를 입력해주세요" android:layout_marginLeft="5dp"
@@ -87,31 +107,39 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:paddingBottom="10dp">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="5dp">
         <TextView
                 android:text="이메일"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content" android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
         <EditText
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
+                android:background="@drawable/statelist_drawable"
+                android:layout_width="130dp"
+                android:layout_height="35dp"
+                android:padding="10dp"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/signup_inputEMAIL" android:layout_marginLeft="5dp" android:textSize="14sp"/>
         <TextView
                 android:text="@"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/textView"/>
         <Spinner
                 android:entries="@array/이메일"
-                android:layout_width="150dp"
+                android:layout_width="130dp"
                 android:text="이메일 선택"
                 android:layout_height="wrap_content" android:id="@+id/signup_spinner" android:spinnerMode="dropdown"
         />
     </LinearLayout>
     <Button
             android:text="회원가입"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/signup_btnSIGNUP" android:layout_marginTop="30dp"/>
+            android:layout_width="320dp"
+            android:layout_height="40dp" android:id="@+id/signup_btnSIGNUP" android:layout_marginTop="30dp"
+            android:background="@drawable/button_drawable"
+            android:textColor="#FFFFFF"/>
 </LinearLayout>
