@@ -9,10 +9,6 @@
                 android:icon="@drawable/mypage"
                 android:title="마이페이지" />
         <item
-                android:id="@+id/nav_all"
-                android:icon="@drawable/wholeujeok"
-                android:title="전체유적지"/>
-        <item
                 android:id="@+id/nav_room"
                 android:icon="@drawable/room"
                 android:title="방" />
