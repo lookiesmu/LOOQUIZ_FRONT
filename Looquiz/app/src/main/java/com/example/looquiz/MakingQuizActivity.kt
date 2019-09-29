@@ -130,7 +130,9 @@ class MakingQuizActivity : AppCompatActivity() {
                 if (state == 0) { //GET_idcheck
                     if (json.getInt("message").equals(1)) {
                         Toast.makeText(applicationContext, "퀴즈가 생성되었습니다.", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(applicationContext, MyRoomActivity::class.java))
+                        var intent2 = Intent(applicationContext, MyRoomActivity::class.java)
+                        intent2.putExtra("codenum", myroom_codenum)
+                        startActivity(intent2)
                         finish()
                     } else {
                         Toast.makeText(applicationContext, "퀴즈 생성에 실패했습니다.\n다시 시도해주십시오.", Toast.LENGTH_SHORT).show()

@@ -56,9 +56,6 @@ class SettingActivity : AppCompatActivity() , NavigationView.OnNavigationItemSel
             R.id.nav_mypage -> {
                 startActivity(Intent(this, MyPageActivity::class.java))
             }
-            R.id.nav_all -> {
-                startActivity(Intent(this, MakingQuizActivity::class.java))
-            }
             R.id.nav_room -> {
                 startActivity(Intent(this, RoomChoose::class.java))
             }

@@ -132,30 +132,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 showRegionList(item.title.toString())
                 return true
             }
-            /*R.id.action_gyeonggi -> {
-                showRegionList(item.title.toString())
-                return true
-            }
-            R.id.action_gangwon -> {
-                showRegionList(item.title.toString())
-                return true
-            }
-            R.id.action_chungcheong -> {
-                //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                return true
-            }*/
+
             R.id.action_gyeongsang -> { //경주
                 showRegionList(item.title.toString())
                 return true
             }
-            /* R.id.action_jeolla -> {
-                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                 return true
-             }
-             R.id.action_jeu -> {
-                 //Toast.makeText(this, ""+item.title, Toast.LENGTH_LONG).show()
-                 return true
-             }*/
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -171,9 +153,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_mypage -> {
                 startActivity(Intent(this, MyPageActivity::class.java))
-            }
-            R.id.nav_all -> {
-                startActivity(Intent(this, MakingQuizActivity::class.java))
             }
             R.id.nav_room -> {
                 startActivity(Intent(this, RoomChoose::class.java))
@@ -218,6 +197,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent = Intent(applicationContext, Main2Activity::class.java)
                 //Log.d("마커 title >>", ""+MarkerOptions().position(desLng).title("경복궁").title)
                 intent.putExtra("regionName", MarkerOptions().position(desLng).title("경복궁").title)
+                intent.getStringExtra("uid")
                 startActivity(intent)
 //                }else Toast.makeText(applicationContext, "접근할 수 없습니다.", Toast.LENGTH_LONG).show()
 
