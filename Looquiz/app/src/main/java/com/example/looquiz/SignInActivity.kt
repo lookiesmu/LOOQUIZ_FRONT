@@ -29,9 +29,6 @@ class SignInActivity : AppCompatActivity() {
                 signin_inputID.text.toString(),
                 signin_inputPW.text.toString()
             )
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
-            //임시
         }
 
         signin_btnsignup.setOnClickListener {
@@ -78,10 +75,10 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,"${uid}님 환영합니다", Toast.LENGTH_SHORT).show()
                     uid = signin_inputID.text.toString()
 
-/*                    var intent = Intent(applicationContext,MainActivity::class.java)
+                    var intent = Intent(applicationContext,MainActivity::class.java)
                     intent.putExtra("uid",uid)
                     startActivity(intent)
-                    finish()*/
+                    finish()
                 }
                 else {
                     Toast.makeText(applicationContext,"일치하는 정보가 없습니다", Toast.LENGTH_SHORT).show()

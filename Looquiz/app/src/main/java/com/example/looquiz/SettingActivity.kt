@@ -36,7 +36,7 @@ class SettingActivity : AppCompatActivity() , NavigationView.OnNavigationItemSel
                     startActivity(Intent(applicationContext, NoticeActivity::class.java))
                 }
                 1 -> { //자주 묻는 질문
-                    startActivity(Intent(applicationContext, NoticeActivity::class.java))
+                    startActivity(Intent(applicationContext, FaqActivity::class.java))
                 }
                 2 -> { //회원정보수정
                     startActivity(Intent(applicationContext, EditPWActivity::class.java))

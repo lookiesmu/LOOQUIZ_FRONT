@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
         nav_view.setNavigationItemSelectedListener(this)
     }
 
@@ -209,6 +208,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         override fun onMapReady(p0: GoogleMap?) {
             gMap = p0
             getMyLocation()
+            gMap!!.setPadding(20,190,10,0)
             Log.d("final check >> ", "${distance}km")
             gMap?.addMarker(MarkerOptions().position(desLng).title("경복궁"))
             //gMap?.addMarker(MarkerOptions().position(LatLng(37.5824994,126.9833762)).title("북촌한옥마을"))

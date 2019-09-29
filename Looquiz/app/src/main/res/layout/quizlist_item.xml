@@ -33,11 +33,10 @@
     </LinearLayout>
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/logout"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/roomexit"
             android:layout_gravity="center_vertical"
-            android:id="@+id/quizlist_delete"
-            android:layout_weight="1" android:padding="10dp"/>
+            android:id="@+id/quizlist_delete"/>
 
 </LinearLayout>

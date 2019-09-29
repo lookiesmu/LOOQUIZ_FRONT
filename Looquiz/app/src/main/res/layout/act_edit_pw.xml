@@ -19,17 +19,21 @@
             android:padding="10dp"
             android:orientation="horizontal">
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="새로운 비밀번호"
-                android:textColor="#000000"/>
+                android:text="새 비밀번호"
+                android:textColor="#000000"
+                android:gravity="center_horizontal"/>
         <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:hint="비밀번호를 입력해주세요"
                 android:id="@+id/editpw_inputpw"
-                android:inputType="numberPassword"/>
+                android:inputType="numberPassword"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/statelist_drawable"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="match_parent"
@@ -38,18 +42,21 @@
             android:padding="10dp"
             android:orientation="horizontal">
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="9dp"
-                android:layout_marginRight="13dp"
-                android:text="비밀번호 확인"
-                android:textColor="#000000"/>
+                android:text="새 비밀번호 확인"
+                android:textColor="#000000"
+                android:gravity="center_horizontal"/>
         <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:hint="비밀번호를 다시 입력해주세요"
                 android:id="@+id/editpw_inputpw2"
-                android:inputType="numberPassword"/>
+                android:inputType="numberPassword"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/statelist_drawable"/>
     </LinearLayout>
     <LinearLayout
             android:layout_width="wrap_content"
@@ -60,12 +67,18 @@
         <Button
                 android:id="@+id/btn_editPW"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_drawable"
                 android:text="수정"/>
         <Button
                 android:id="@+id/btn_secession"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_drawable"
                 android:text="회원탈퇴"/>
     </LinearLayout>
 

@@ -18,7 +18,7 @@
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
     >
@@ -41,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:id="@+id/uid"
-                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
                     android:textColor="#ffff"/>
             <Button
                     android:text="로그아웃"
@@ -51,7 +52,8 @@
                     android:id="@+id/btn_logout"
                     android:background="@android:color/transparent"
                     android:layout_alignParentEnd="true"
-                    android:textSize="13sp"
+                    android:layout_alignBottom="@+id/uid"
+                    android:textSize="18sp"
                     android:textColor="#ffff"/>
         </RelativeLayout>
 

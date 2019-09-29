@@ -8,13 +8,13 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import android.widget.Toast
 
-class NoticeListAdapter : BaseExpandableListAdapter {
+class FaqListAdapter : BaseExpandableListAdapter{
 
     lateinit var context: Context
-    lateinit var sectionList: MutableList<sectionNotice>
-    lateinit var chapterList: MutableList<chapterNotice>
+    lateinit var sectionList: MutableList<sectionFAQ>
+    lateinit var chapterList: MutableList<chapterFAQ>
 
-    constructor(context: Context, sectionList: MutableList<sectionNotice>) : super() {
+    constructor(context: Context, sectionList: MutableList<sectionFAQ>) : super() {
         this.context = context
         this.sectionList = mutableListOf()
         this.sectionList.addAll(sectionList)
@@ -34,17 +34,17 @@ class NoticeListAdapter : BaseExpandableListAdapter {
 
     override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup?): View {
 
-        var s: sectionNotice = getGroup(groupPosition) as sectionNotice
+        var s: sectionFAQ = getGroup(groupPosition) as sectionFAQ
         var inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var rv: View = if(convertView == null)
         {
-            inflater.inflate(R.layout.list_notice_group,null)
+            inflater.inflate(R.layout.list_faq_group,null)
         }
         else
         {
             convertView
         }
-        var tv: TextView = rv.findViewById(R.id.lblListHeader) as TextView
+        var tv: TextView = rv.findViewById(R.id.lblListHeaderFaq) as TextView
         tv.setText(s.getName().trim())
         if (isExpanded) {}
         return rv
@@ -65,17 +65,17 @@ class NoticeListAdapter : BaseExpandableListAdapter {
     }
 
     override fun getChildView(groupPosition: Int, childPosition: Int, isLastChild: Boolean, convertView: View?, parent: ViewGroup?): View {
-        var c: chapterNotice = getChild(groupPosition, childPosition) as chapterNotice
+        var c: chapterFAQ = getChild(groupPosition, childPosition) as chapterFAQ
         var inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var rv: View = if (convertView == null)
         {
-            inflater.inflate(R.layout.list_notice_item,null)
+            inflater.inflate(R.layout.list_faq_item,null)
         }
         else
         {
             convertView
         }
-        var tv: TextView = rv.findViewById(R.id.lblListItem) as TextView
+        var tv: TextView = rv.findViewById(R.id.lblListItemFaq) as TextView
         tv.setText(c.getName().trim())
         rv.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
