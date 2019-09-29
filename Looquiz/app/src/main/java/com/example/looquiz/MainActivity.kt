@@ -13,6 +13,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.app.AlertDialog
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
@@ -57,6 +58,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.act_main)
         setSupportActionBar(toolbar)
 
+        var colorAlpha = Color.parseColor("#80FFFFFF") //app bar 투명도 설정을 위한 컬러 코드 정수화
+        toolbar.setBackgroundColor(colorAlpha) //app bar 투명도 설정을 위한 배경색 임시 설정 이 두개 코드 지워도댐
+
         desLng = LatLng(37.579600, 126.976998)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -87,7 +91,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
         nav_view.setNavigationItemSelectedListener(this)
     }
 
@@ -205,6 +208,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         override fun onMapReady(p0: GoogleMap?) {
             gMap = p0
             getMyLocation()
+            gMap!!.setPadding(20,190,10,0)
             Log.d("final check >> ", "${distance}km")
             gMap?.addMarker(MarkerOptions().position(desLng).title("경복궁"))
             //gMap?.addMarker(MarkerOptions().position(LatLng(37.5824994,126.9833762)).title("북촌한옥마을"))

@@ -7,11 +7,44 @@
         android:layout_height="match_parent"
         tools:context=".QuizRateActivity">
 
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+        <android.support.design.widget.AppBarLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/appbar"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:id="@+id/quizrate_rv"
-            android:layout_marginTop="10dp"></android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="#A9BFF5"
+                        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/history_logo_1x"
+                        android:id="@+id/imageView2"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"/>
+
+            </RelativeLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/quizrate_rv"
+                android:layout_marginTop="30dp"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
 
 </LinearLayout>

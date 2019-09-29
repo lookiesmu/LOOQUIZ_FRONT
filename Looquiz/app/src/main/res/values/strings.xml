@@ -7,35 +7,35 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="server_url">https://d10a421d.ngrok.io/hi_story</string>
-    <string name="signup_checkID">https://d10a421d.ngrok.io/hi_story/checkID?uid=</string>
-    <string name="checkpw">https://d10a421d.ngrok.io/hi_story/checkPW</string>
-    <string name="signup">https://d10a421d.ngrok.io/hi_story/signUp</string>
-    <string name="signin">https://d10a421d.ngrok.io/hi_story/signIn</string>
-    <string name="logout">https://d10a421d.ngrok.io/hi_story/logOut</string>
-    <string name="findID">https://d10a421d.ngrok.io/hi_story/findID?uname=</string>
-    <string name="findPW">https://d10a421d.ngrok.io/hi_story/checkID?uid=</string>
-    <string name="edit_pw">https://d10a421d.ngrok.io/hi_story/updateMember</string>
-    <string name="delete_mem">https://d10a421d.ngrok.io/hi_story/deleteMem</string>
-    <string name="create_quiz">https://d10a421d.ngrok.io/hi_story/createQ</string>
-    <string name="delete_quiz">https://d10a421d.ngrok.io/hi_story/deleteQ?qid=</string>
-    <string name="scuccesrate">https://d10a421d.ngrok.io/hi_story/successRate?cityname=</string>
-    <string name="edit_quiz">https://d10a421d.ngrok.io/hi_story/editingQuiz</string>
-    <string name="search_mem">https://d10a421d.ngrok.io/hi_story/searchMem</string>
-    <string name="enter_room">https://d10a421d.ngrok.io/hi_story/enterRoom</string>
-    <string name="delete_room">https://d10a421d.ngrok.io/hi_story/deleteRoom</string>
-    <string name="corplist">https://d10a421d.ngrok.io/hi_story/corpList?bid=</string>
-    <string name="badge">https://d10a421d.ngrok.io/hi_story/badge</string>
-    <string name="cityname">https://d10a421d.ngrok.io/hi_story/rnameList?cityname=</string>
-    <string name="search_makeroom">https://d10a421d.ngrok.io/hi_story/makeRoomSearch</string>
-    <string name="participate_room">https://d10a421d.ngrok.io/hi_story/participateRoom</string>
-    <string name="region_quizlist">https://d10a421d.ngrok.io/hi_story/regionQuizList</string>
-    <string name="make_room">https://d10a421d.ngrok.io/hi_story/makeRoom</string>
-    <string name="room_quizlist">https://d10a421d.ngrok.io/hi_story/roomQuizList</string>
-    <string name="before_quiz">https://d10a421d.ngrok.io/hi_story/quizQuestion</string>
-    <string name="after_quiz">https://d10a421d.ngrok.io/hi_story/takeQuiz</string>
-    <string name="citylist">https://d10a421d.ngrok.io/hi_story/cityList</string>
-    <string name="get_badge">https://d10a421d.ngrok.io/hi_story/getUserBadge</string>
+    <string name="server_url">http://15.164.22.63:8080/hi_story_server/</string>
+    <string name="signup_checkID">http://15.164.22.63:8080/hi_story_server/checkID?uid=</string>
+    <string name="checkpw">http://15.164.22.63:8080/hi_story_server/checkPW</string>
+    <string name="signup">http://15.164.22.63:8080/hi_story_server/signUp</string>
+    <string name="signin">http://15.164.22.63:8080/hi_story_server/signIn</string>
+    <string name="logout">http://15.164.22.63:8080/hi_story_server/logOut</string>
+    <string name="findID">http://15.164.22.63:8080/hi_story_server/findID?uname=</string>
+    <string name="findPW">http://15.164.22.63:8080/hi_story_server/checkID?uid=</string>
+    <string name="edit_pw">http://15.164.22.63:8080/hi_story_server/updateMember</string>
+    <string name="delete_mem">http://15.164.22.63:8080/hi_story_server/deleteMem</string>
+    <string name="create_quiz">http://15.164.22.63:8080/hi_story_server/createQ</string>
+    <string name="delete_quiz">http://15.164.22.63:8080/hi_story_server/deleteQ?qid=</string>
+    <string name="scuccesrate">http://15.164.22.63:8080/hi_story_server/successRate?cityname=</string>
+    <string name="edit_quiz">http://15.164.22.63:8080/hi_story_server/editingQuiz</string>
+    <string name="search_mem">http://15.164.22.63:8080/hi_story_server/searchMem</string>
+    <string name="enter_room">http://15.164.22.63:8080/hi_story_server/enterRoom</string>
+    <string name="delete_room">http://15.164.22.63:8080/hi_story_server/deleteRoom?codenum=</string>
+    <string name="corplist">http://15.164.22.63:8080/hi_story_server/corpList?bid=</string>
+    <string name="badge">http://15.164.22.63:8080/hi_story_server/badge</string>
+    <string name="cityname">http://15.164.22.63:8080/hi_story_server/rnameList?cityname=</string>
+    <string name="search_makeroom">http://15.164.22.63:8080/hi_story_server/makeRoomSearch</string>
+    <string name="participate_room">http://15.164.22.63:8080/hi_story_server/participateRoom</string>
+    <string name="region_quizlist">http://15.164.22.63:8080/hi_story_server/regionQuizList</string>
+    <string name="make_room">http://15.164.22.63:8080/hi_story_server/makeRoom</string>
+    <string name="room_quizlist">http://15.164.22.63:8080/hi_story_server/roomQuizList</string>
+    <string name="before_quiz">http://15.164.22.63:8080/hi_story_server/quizQuestion</string>
+    <string name="after_quiz">http://15.164.22.63:8080/hi_story_server/takeQuiz</string>
+    <string name="citylist">http://15.164.22.63:8080/hi_story_server/cityList</string>
+    <string name="get_badge">http://15.164.22.63:8080/hi_story_server/getUserBadge</string>
 
 
     <string name="menu_seoul">서울</string>
@@ -401,29 +401,70 @@
     </string-array>
 
     <string-array name="chapter1">
-        <item>카카오톡 사용자 여러분 안녕하세요,\n
-            ▽다들 궁금하셨을 PC톡 3.0.5 버전의 주요 업데이트 내용을 소개합니다.▽\n
-            ◼︎ 듣기만해도 시원해지는 연결음 추가!\n
-            띵디디딩 띠리디디딩~ 글자만 봐도 오디오 지원 되는듯한 보이스톡/페이스톡 연결음\n
-            남녀노소 불문하고 많은 분들께 벅찬 사랑을 받았었는데요~\n
-            항상 사랑에 목마른 카카오팀!\n
-            두 배, 세 배 더 많은 사랑을 받고 싶어 새로운 연결음을 준비했어요.</item>
+        <item>History의 공지사항\n
+            \n
+            동해물과\n
+            \n
+            백두산이\n
+            \n
+            마르고\n
+            \n
+            닳도록\n
+            \n</item>
     </string-array>
 
     <string-array name="chapter2">
-        <item>Section 4</item>
-        <item>Section 5</item>
+        <item>Notice 4</item>
+        <item>Notice 5</item>
     </string-array>
 
     <string-array name="chapter3">
-        <item>Section 6</item>
-        <item>Section 7</item>
-        <item>Section 8</item>
-        <item>Section 9</item>
+        <item>Notice 6</item>
+        <item>Notice 7</item>
+        <item>Notice 8</item>
+        <item>Notice 9</item>
     </string-array>
 
     <string-array name="chapter4">
-        <item>Section 10</item>
+        <item>Notice 10</item>
+    </string-array>
+
+    <string-array name="faq_chapter">
+        <item>FAQ #1</item>
+        <item>FAQ #2</item>
+        <item>FAQ #3</item>
+        <item>FAQ #4</item>
+        <item>FAQ #5</item>
+        <item>FAQ #6</item>
+    </string-array>
+
+    <string-array name="faq_chapter1">
+        <item>History의 FAQ\n
+            \n
+            동해물과\n
+            \n
+            백두산이\n
+            \n
+            마르고\n
+            \n
+            닳도록\n
+            \n</item>
+    </string-array>
+
+    <string-array name="faq_chapter2">
+        <item>FAQ Context 4</item>
+        <item>FAQ Context 5</item>
+    </string-array>
+
+    <string-array name="faq_chapter3">
+        <item>FAQ Context 6</item>
+        <item>FAQ Context 7</item>
+        <item>FAQ Context 8</item>
+        <item>FAQ Context 9</item>
+    </string-array>
+
+    <string-array name="faq_chapter4">
+        <item>FAQ Context 10</item>
     </string-array>
 
 </resources>

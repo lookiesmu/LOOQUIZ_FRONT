@@ -15,8 +15,35 @@
                 android:id="@+id/appbar"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="#A9BFF5"
+                        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        app:srcCompat="@drawable/history_logo_1x"
+                        android:id="@+id/imageView2"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"/>
+
+            </RelativeLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#7197f5">
+                <!--앱바랑 탭바사이 구분선-->
+            </View>
+
             <android.support.design.widget.TabLayout
                     android:id="@+id/tabs"
+                    android:background="#A9BFF5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
             >
@@ -30,11 +57,13 @@
         </android.support.v4.view.ViewPager>
 
         <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/plus"
+                android:layout_width="70dp"
+                android:layout_height="67dp"
                 android:id="@+id/createroom_btn"
                 android:padding="10dp"
-                android:layout_gravity="center_vertical"/>
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="right"
+                android:background="@drawable/button_pressed_effect"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

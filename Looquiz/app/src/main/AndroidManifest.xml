@@ -13,27 +13,32 @@
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".LicenseActivity">
+            android:theme="@style/NoActionBar"
+            android:label=""
+            android:usesCleartextTraffic="true">
+        <activity android:name=".LicenseActivity"
+        android:theme="@style/AppTheme"
+        android:label="라이센스">
         </activity>
         <activity
                 android:name=".NoticeActivity"
+                android:theme="@style/AppTheme"
                 android:label="공지사항"/>
         <activity
                 android:name=".SettingActivity"
                 android:label="설정"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".EditPWActivity">
+        <activity android:name=".EditPWActivity"
+                  android:theme="@style/AppTheme"
+                  android:label="회원정보수정">
         </activity>
         <activity android:name=".MakingQuizActivity">
         </activity>
         <activity
                 android:name=".Main2Activity"
-                android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".QuizRateActivity">
@@ -52,11 +57,18 @@
         </activity>
         <activity android:name=".BadgeList">
         </activity>
-        <activity android:name=".AdviceActivity">
+        <activity android:name=".FaqActivity"
+                  android:theme="@style/AppTheme"
+                  android:label="자주 묻는 질문">
+        </activity>
+        <activity android:name=".AdviceActivity"
+                  android:theme="@style/AppTheme"
+                  android:label="도움말">
         </activity>
         <activity android:name=".JoinRoomActivity">
         </activity>
         <activity android:name=".SignInActivity"
+                  android:label="HiStory"
                   android:theme="@style/NoActionBar">
 
             <intent-filter>
@@ -69,7 +81,6 @@
         </activity>
         <activity
                 android:name=".MainActivity"
-                android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
